@@ -20,6 +20,15 @@ var map;
       center: {lat: latt, lng: lngg},
       zoom: 17
     });
+    var marker = new google.maps.Marker({
+      position: map.getCenter(),
+      icon: {
+        path: google.maps.SymbolPath.CIRCLE,
+        scale: 10
+      },
+      draggable: true,
+      map: map
+    });
   }
 
 $( document ).ready(function() {
