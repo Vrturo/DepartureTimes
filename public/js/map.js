@@ -18,7 +18,7 @@ var map;
   function initMap(latt, lngg) {
     map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: latt, lng: lngg},
-      zoom: 17
+      zoom: 15
     });
     var marker = new google.maps.Marker({
       position: map.getCenter(),
@@ -29,6 +29,9 @@ var map;
       draggable: false,
       map: map
     });
+
+    var transitLayer = new google.maps.TransitLayer();
+    transitLayer.setMap(map);
   }
 
 $( document ).ready(function() {
