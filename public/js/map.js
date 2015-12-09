@@ -23,10 +23,10 @@ var map;
     var marker = new google.maps.Marker({
       position: map.getCenter(),
       icon: {
-        path: google.maps.SymbolPath.CIRCLE,
-        scale: 10
+        path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+        scale: 5
       },
-      draggable: true,
+      draggable: false,
       map: map
     });
   }
