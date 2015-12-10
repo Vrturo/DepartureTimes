@@ -1,5 +1,5 @@
 def google_maps_api_key
-  "AIzaSyBFaifuWi-19rCAy3rrjrPeJZyJ4BM76T4"
+  ENV['GOOGLE_MAPS_API_KEY']
 end
 
 def google_api_url
