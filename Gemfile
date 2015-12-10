@@ -13,6 +13,7 @@ gem 'bcrypt-ruby'
 
 gem 'rake'
 
+gem 'httparty'
 gem 'shotgun'
 
 group :test do
