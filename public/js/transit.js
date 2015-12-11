@@ -5,8 +5,7 @@
 // });
 
 
-$(document).ready(function() {
-    // console.log(stopName);
-    // transitClick();
-});
+// $(document).ready(function() {
+//     transitClick();
+// });
 
