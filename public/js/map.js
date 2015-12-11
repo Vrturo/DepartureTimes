@@ -43,21 +43,34 @@ var map;
     var transitLayer = new google.maps.TransitLayer();
     transitLayer.setMap(map);
 
-    function geocodeAddress(geocoder, resultsMap) {
-      var address = document.getElementById('address').value;
-      geocoder.geocode({'address': address}, function(results, status) {
-        if (status === google.maps.GeocoderStatus.OK) {
-          resultsMap.setCenter(results[0].geometry.location);
-          var marker = new google.maps.Marker({
-            map: resultsMap,
-            position: results[0].geometry.location
-          });
-        } else {
-          alert('Geocode was not successful for the following reason: ' + status);
-        }
-      });
-    }
+    var geocoder = new google.maps.Geocoder();
+    $( "#transit" ).click(function(){
+      geocodeAddress(geocoder, map);
+    });
   }
+
+function geocodeAddress(geocoder, resultsMap) {
+  geocoder.geocode({'address': stopName}, function(results, status) {
+    if (status === google.maps.GeocoderStatus.OK) {
+      resultsMap.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+        map: resultsMap,
+        position: results[0].geometry.location,
+        icon: {
+          path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+          scale: 5
+        },
+  draggable: false,
+  map: map
+      });
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+};
+
+
+
 
 $( document ).ready(function() {
   getLocation();
