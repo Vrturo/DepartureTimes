@@ -45,7 +45,8 @@ var map;
 
     var geocoder = new google.maps.Geocoder();
     $( "#transit" ).click(function(){
-      geocodeAddress(geocoder, map);
+      // geocodeAddress(geocoder, map);
+      console.log(transitArr);
     });
   }
 
@@ -56,7 +57,7 @@ function geocodeAddress(geocoder, resultsMap) {
       var marker = new google.maps.Marker({
         map: resultsMap,
         position: results[0].geometry.location,
-        icon: "http://ptv.vic.gov.au/themes/transport-site/images/jp/icons/iconTrain.png",
+        icon: "/img/icontrain.png",
         draggable: false,
         map: map
       });
