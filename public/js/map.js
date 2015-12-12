@@ -56,12 +56,9 @@ function geocodeAddress(geocoder, resultsMap) {
       var marker = new google.maps.Marker({
         map: resultsMap,
         position: results[0].geometry.location,
-        icon: {
-          path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
-          scale: 5
-        },
-  draggable: false,
-  map: map
+        icon: "http://uxrepo.com/static/icon-sets/windows/png32/36/000000/train-36-000000.png",
+        draggable: false,
+        map: map
       });
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
