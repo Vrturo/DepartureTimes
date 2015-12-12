@@ -45,26 +45,28 @@ var map;
 
     var geocoder = new google.maps.Geocoder();
     $( "#transit" ).click(function(){
-      // geocodeAddress(geocoder, map);
+      geocodeAddress(geocoder, map);
       console.log(transitArr);
     });
   }
 
 function geocodeAddress(geocoder, resultsMap) {
-  geocoder.geocode({'address': stopName}, function(results, status) {
-    if (status === google.maps.GeocoderStatus.OK) {
-      resultsMap.setZoom(11);
-      var marker = new google.maps.Marker({
-        map: resultsMap,
-        position: results[0].geometry.location,
-        icon: "/img/icontrain.png",
-        draggable: false,
-        map: map
-      });
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
-  });
+  for (i = 0; i < transitArr.length; i++) {
+    geocoder.geocode({'address': transitArr[i]}, function(results, status) {
+      if (status === google.maps.GeocoderStatus.OK) {
+        resultsMap.setZoom(11);
+        var marker = new google.maps.Marker({
+          map: resultsMap,
+          position: results[0].geometry.location,
+          icon: "/img/icontrain.png",
+          draggable: false,
+          map: map
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
 };
 
 
