@@ -6,7 +6,7 @@
 <div id="location"> hello</div>
 <div>
   <% @data["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"]["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"].each do |key|%>
-    <div>Stop Name: <%= zzz = key["name"]%>, Stop Code: <%= key["StopCode"]%></div>
+    <div>Stop Name: <%= key["name"]%>, Stop Code: <%= key["StopCode"]%></div>
   <% end%>
 </div>
 <button src="" id="transit"> CalTrain </button>
@@ -18,5 +18,5 @@
 </script>
 
 <script type="text/javascript">
-  var stopName = "<%= @stopname%>"
+  var stopName = "<%= @stopname%>";
 </script>

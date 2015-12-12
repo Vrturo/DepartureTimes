@@ -7,6 +7,8 @@ gem 'pg'
 gem 'sinatra'
 gem 'sinatra-contrib'
 
+require 'dotenv'
+Dotenv.load
 gem 'nokogiri'
 gem 'activesupport'
 gem 'activerecord'
