@@ -19,3 +19,10 @@ The Backend was written in rails. <br />
 - not being able to render api 511 api data server side
 - passing client side data to JS script
 - google api query limit of 13
+
+
+### Resources
+
+https://developers.google.com/maps/<br>
+http://511.org/developer-resources_transit-api.asp\<br>
+https://www.quora.com/How-do-I-pass-a-Ruby-variable-to-JavaScript<br>

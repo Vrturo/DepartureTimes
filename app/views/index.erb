@@ -5,11 +5,6 @@
 
 
 <div id="location"> hello</div>
-<div>
-  <% @data["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"]["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"].each do |key|%>
-    <div>Stop Name: <%= key["name"]%>, Stop Code: <%= key["StopCode"]%></div>
-  <% end%>
-</div>
 <button src="" id="transit"> CalTrain </button>
 <div id="map"></div>
 
