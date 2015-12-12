@@ -15,3 +15,6 @@ The Backend was written in rails. <br />
 ### Frontend<br />
 
 ## Challenges
+- hiding env keys, specifically on controller
+- not being able to render api 511 api data server side
+- passing client side data to JS script
