@@ -56,7 +56,7 @@ function geocodeAddress(geocoder, resultsMap) {
       var marker = new google.maps.Marker({
         map: resultsMap,
         position: results[0].geometry.location,
-        icon: "http://uxrepo.com/static/icon-sets/windows/png32/36/000000/train-36-000000.png",
+        icon: "http://ptv.vic.gov.au/themes/transport-site/images/jp/icons/iconTrain.png",
         draggable: false,
         map: map
       });
