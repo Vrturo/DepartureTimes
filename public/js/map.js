@@ -46,7 +46,6 @@ var map;
     var geocoder = new google.maps.Geocoder();
     $( "#transit" ).click(function(){
       geocodeAddress(geocoder, map);
-      console.log(transitArr);
     });
   }
 
@@ -64,10 +63,11 @@ function geocodeAddress(geocoder, resultsMap) {
 
         });
         var infowindow = new google.maps.InfoWindow({
-            title: "hello"
+            title: results[0]["address_components"][0]["long_name"],
+            content: results[0]["formatted_address"]
         });
          marker.addListener('click', function() {
-            console.log(results[0]["formatted_address"]);
+            console.log(results[0]["address_components"][0]["long_name"]);
             infowindow.open(map, marker);
           });
         };
