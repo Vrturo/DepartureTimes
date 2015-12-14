@@ -63,8 +63,7 @@ function geocodeAddress(geocoder, resultsMap) {
 
         });
         var infowindow = new google.maps.InfoWindow({
-            title: results[0]["address_components"][0]["long_name"],
-            content: results[0]["formatted_address"]
+            content: results[0]["address_components"][0]["long_name"]
         });
          marker.addListener('click', function() {
             console.log(results[0]["address_components"][0]["long_name"]);
