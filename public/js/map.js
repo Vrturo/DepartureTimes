@@ -62,12 +62,20 @@ function geocodeAddress(geocoder, resultsMap) {
           draggable: false,
           map: map
         });
+        var contentString = transitArr[i];
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+          });
+         marker.addListener('click', function() {
+            infowindow.open(map, marker);
+          });
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
       }
     });
   }
 };
+
 
 
 $( document ).ready(function() {
