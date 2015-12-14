@@ -1,15 +1,19 @@
 get '/' do
 
-  htmllink = "http://services.my511.org/Transit2.0/GetStopsForRoute.aspx?routeIDF=Caltrain~LOCAL~SB1&token=#{ENV['TRANSIT_API_KEY']}"
-  @data = HTTParty.get(htmllink)
+  getStopsLink = "http://services.my511.org/Transit2.0/GetStopsForRoute.aspx?routeIDF=Caltrain~LOCAL~SB1&token=#{ENV['TRANSIT_API_KEY']}"
+  @data = HTTParty.get(getStopsLink)
 
   @stopname =  @data["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"]["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"][0]["name"]
 
-  empty_arr = []
+  transit_arr = []
   @data["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"]["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"].each do |key|
-    empty_arr << key["name"]
+    transit_arr << key["name"]
   end
-  @transitarr = empty_arr
+  @transitarr = transit_arr
+
+  getDepartureLink = "http://services.my511.org/Transit2.0/GetNextDeparturesByStopCode.aspx?token=#{ENV['TRANSIT_API_KEY']}&stopcode="
+
+
 
   erb :index
 end
