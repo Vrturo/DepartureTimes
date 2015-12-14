@@ -60,18 +60,17 @@ function geocodeAddress(geocoder, resultsMap) {
           position: results[0].geometry.location,
           icon: "/img/icontrain.png",
           draggable: false,
-          map: map
+          map: map,
+          title: transitArr[i]
         });
         var contentString = transitArr[i];
         var infowindow = new google.maps.InfoWindow({
             content: contentString
-          });
+        });
          marker.addListener('click', function() {
             infowindow.open(map, marker);
           });
-      } else {
-        alert('Geocode was not successful for the following reason: ' + status);
-      }
+        };
     });
   }
 };
