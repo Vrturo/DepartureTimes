@@ -61,13 +61,13 @@ function geocodeAddress(geocoder, resultsMap) {
           icon: "/img/icontrain.png",
           draggable: false,
           map: map,
-          title: transitArr[i]
+
         });
-        var contentString = transitArr[i];
         var infowindow = new google.maps.InfoWindow({
-            content: contentString
+            title: "hello"
         });
          marker.addListener('click', function() {
+            console.log(results[0]["formatted_address"]);
             infowindow.open(map, marker);
           });
         };
