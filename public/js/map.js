@@ -63,10 +63,10 @@ function geocodeAddress(geocoder, resultsMap) {
 
         });
         var infowindow = new google.maps.InfoWindow({
-            content: results[0]["address_components"][0]["long_name"]
+            content: '<h3>' + results[0]["address_components"][0]["long_name"] + '</h3>'
         });
          marker.addListener('click', function() {
-            console.log(results[0]["address_components"][0]["long_name"]);
+            console.log(results[0]);
             infowindow.open(map, marker);
           });
         };
