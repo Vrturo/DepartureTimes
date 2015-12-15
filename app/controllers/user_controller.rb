@@ -1,5 +1,8 @@
 get '/' do
 
+  agencyLink = "http://services.my511.org/Transit2.0/GetAgencies.aspx?token=#{ENV['TRANSIT_API_KEY']}"
+  @agency = HTTParty.get(agencyLink)
+
   getStopsLink = "http://services.my511.org/Transit2.0/GetStopsForRoute.aspx?routeIDF=Caltrain~LOCAL~SB1&token=#{ENV['TRANSIT_API_KEY']}"
   @data = HTTParty.get(getStopsLink)
 
