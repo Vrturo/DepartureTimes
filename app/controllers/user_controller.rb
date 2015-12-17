@@ -23,8 +23,8 @@ get '/' do
   @transit_arr = transit_arr
   @stop_arr = stop_arr
 
-  getDepartureLink = "http://services.my511.org/Transit2.0/GetNextDeparturesByStopCode.aspx?token=#{ENV['TRANSIT_API_KEY']}&stopcode="
-
+  getDepartureLink = "http://services.my511.org/Transit2.0/GetNextDeparturesByStopCode.aspx?token=#{ENV['TRANSIT_API_KEY']}&stopcode=#{@stop_arr[1]}"
+  @departure = HTTParty.get(getDepartureLink)
 
   erb :index
 end
