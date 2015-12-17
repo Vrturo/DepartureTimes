@@ -17,7 +17,7 @@ get '/' do
   @getnextdep = HTTParty.get(getnextdeplink)
 
 
-
+  @this = HTTParty.get("http://services.my511.org/Transit2.0/GetRoutesForAgency.aspx?agencyName=Caltrain&token=#{ENV['TRANSIT_API_KEY']}")
 
 
 

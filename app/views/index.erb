@@ -1,11 +1,12 @@
 <script type="text/javascript">
-  var transitArr = "<%=@transitarr%>";
-  var stopName = "<%=@stopname%>"
+  var transitArr = <%=@transit_arr%>;
+  var stopName = "<%=@stopname%>";
 </script>
 
-<div> <%= @getnextdep %> </div>
+<div> <%= @this %> </div>
 <div id="location"> hello</div>
-<button src="" id="transit"> CalTrain </button>
+<button src="" id="transit"> CalTrain NorthBound </button>
+<button src="" id="transit"> CalTrain SouthBound </button>
 <div id="map"></div>
 
 
