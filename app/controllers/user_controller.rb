@@ -22,12 +22,8 @@ get '/' do
     northbound_arr << key["name"]
     northstop_arr << key["StopCode"]
   end
-  @northbound_arr = northbound_arr
-  @northstop_arr = northstop_arr
-
-
-
-
+  @northbound_arr = northbound_arr #array of northbound names
+  @northstop_arr = northstop_arr  #array of northbound stop codes
 
   southboundlink = "http://services.my511.org/Transit2.0/GetStopsForRoute.aspx?routeIDF=Caltrain~LOCAL~SB1&token=#{ENV['TRANSIT_API_KEY']}"
   @southbound = HTTParty.get(southboundlink)
@@ -40,6 +36,8 @@ get '/' do
   @southbound_arr = southbound_arr
   @southstop_arr = southstop_arr
 
+  departuretimelink = "http://services.my511.org/Transit2.0/GetNextDeparturesByStopCode.aspx?token=#{ENV['TRANSIT_API_KEY']}&stopcode=70012"
+  @departure = HTTParty.get(departuretimelink)
 
 
 
