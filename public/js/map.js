@@ -7,13 +7,11 @@ function getLocation() {
     }
 }
 var myMap = {};
-
 function showPosition(position) {
     x.innerHTML = "Latitude: " + position.coords.latitude +
     "<br>Longitude: " + position.coords.longitude;
     initMap(position.coords.latitude, position.coords.longitude);
 }
-
 var map;
   function initMap(latt, lngg) {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -44,12 +42,15 @@ var map;
     transitLayer.setMap(map);
 
     var geocoder = new google.maps.Geocoder();
-    $( "#transit" ).click(function(){
-      geocodeAddress(geocoder, map);
+    $( "#north" ).click(function(){
+      geocodeAddress(geocoder, map, northArr);
+    });
+    $( "#south" ).click(function(){
+      geocodeAddress(geocoder, map, southArr);
     });
   }
 
-function geocodeAddress(geocoder, resultsMap) {
+function geocodeAddress(geocoder, resultsMap, transitArr) {
   for (i = 0; i < transitArr.length; i++) {
     geocoder.geocode({'address': transitArr[i]}, function(results, status) {
       if (status === google.maps.GeocoderStatus.OK) {

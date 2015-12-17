@@ -13,32 +13,35 @@ get '/' do
   routeforagencylink = "http://services.my511.org/Transit2.0/GetRoutesForAgency.aspx?token=#{ENV['TRANSIT_API_KEY']}&agencyName=BART"
   @routeagency = HTTParty.get(routeforagencylink)
 
-  getnextdeplink = "http://services.my511.org/Transit2.0/GetNextDeparturesForStopName.aspx?token=#{ENV['TRANSIT_API_KEY']}&agencyName=BART&Name=Dublin/Pleasanton"
-  @getnextdep = HTTParty.get(getnextdeplink)
 
-
-  @this = HTTParty.get("http://services.my511.org/Transit2.0/GetRoutesForAgency.aspx?agencyName=Caltrain&token=#{ENV['TRANSIT_API_KEY']}")
-
-
-
-
-
-
-
-  stopsLink = "http://services.my511.org/Transit2.0/GetStopsForRoute.aspx?routeIDF=Caltrain~LOCAL~SB1&token=#{ENV['TRANSIT_API_KEY']}"
-  stops = HTTParty.get(stopsLink)
-  stopname = stops["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"]["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"][0]["name"]
-  transit_arr = []
-  stop_arr = []
-  stops["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"]["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"].each do |key|
-    transit_arr << key["name"]
-    stop_arr << key["StopCode"]
+  northboundlink = "http://services.my511.org/Transit2.0/GetStopsForRoute.aspx?routeIDF=Caltrain~LOCAL~NB&token=#{ENV['TRANSIT_API_KEY']}"
+  @northbound = HTTParty.get(northboundlink)
+  northbound_arr = []
+  northstop_arr = []
+  @northbound["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"]["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"].each do |key|
+    northbound_arr << key["name"]
+    northstop_arr << key["StopCode"]
   end
-  @transit_arr = transit_arr
-  @stop_arr = stop_arr
+  @northbound_arr = northbound_arr
+  @northstop_arr = northstop_arr
 
-  getDepartureLink = "http://services.my511.org/Transit2.0/GetNextDeparturesByStopCode.aspx?token=#{ENV['TRANSIT_API_KEY']}&stopcode=#{@stop_arr[0]}"
-  @departure = HTTParty.get(getDepartureLink)
+
+
+
+
+  southboundlink = "http://services.my511.org/Transit2.0/GetStopsForRoute.aspx?routeIDF=Caltrain~LOCAL~SB1&token=#{ENV['TRANSIT_API_KEY']}"
+  @southbound = HTTParty.get(southboundlink)
+  southbound_arr = []
+  southstop_arr = []
+  @southbound["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"]["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"].each do |key|
+    southbound_arr << key["name"]
+    southstop_arr << key["StopCode"]
+  end
+  @southbound_arr = southbound_arr
+  @southstop_arr = southstop_arr
+
+
+
 
   erb :index
 end
