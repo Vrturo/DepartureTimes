@@ -1,8 +1,7 @@
 get '/' do
 
-  agencyLink = "http://services.my511.org/Transit2.0/GetAgencies.aspx?token=#{ENV['TRANSIT_API_KEY']}"
-  agency = HTTParty.get(agencyLink)
-
+  agencylink = "http://services.my511.org/Transit2.0/GetAgencies.aspx?token=#{ENV['TRANSIT_API_KEY']}"
+  agency = HTTParty.get(agencylink)
   agency_arr = []
   agency["RTT"]["AgencyList"]["Agency"].each do |key|
     if key["Mode"] == "Rail"
@@ -12,19 +11,19 @@ get '/' do
   @agency_arr = agency_arr
 
 
-  getStopsLink = "http://services.my511.org/Transit2.0/GetStopsForRoute.aspx?routeIDF=Caltrain~LOCAL~SB1&token=#{ENV['TRANSIT_API_KEY']}"
-  @data = HTTParty.get(getStopsLink)
-
-  @stopname =  @data["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"]["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"][0]["name"]
-
+  stopsLink = "http://services.my511.org/Transit2.0/GetStopsForRoute.aspx?routeIDF=Caltrain~LOCAL~SB1&token=#{ENV['TRANSIT_API_KEY']}"
+  stops = HTTParty.get(stopsLink)
+  stopname = stops["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"]["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"][0]["name"]
   transit_arr = []
-  @data["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"]["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"].each do |key|
+  stop_arr = []
+  stops["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"]["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"].each do |key|
     transit_arr << key["name"]
+    stop_arr << key["StopCode"]
   end
-  @transitarr = transit_arr
+  @transit_arr = transit_arr
+  @stop_arr = stop_arr
 
   getDepartureLink = "http://services.my511.org/Transit2.0/GetNextDeparturesByStopCode.aspx?token=#{ENV['TRANSIT_API_KEY']}&stopcode="
-
 
 
   erb :index
