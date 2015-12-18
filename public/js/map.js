@@ -64,8 +64,8 @@ function geocodeAddress(geocoder, resultsMap, transitArr) {
           map: map,
 
         });
-            console.log(results);
          marker.addListener('click', function() {
+
             infowindow.open(map, marker);
           });
         var infowindow = new google.maps.InfoWindow({
