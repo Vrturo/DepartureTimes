@@ -1,4 +1,4 @@
-class DepartureTimes
+class DepartureTime
 
   attr_accessor :departuretime
   def initialize(stopcode)
@@ -8,7 +8,6 @@ class DepartureTimes
   end
 
   def get_stops
-    @departuretime = []
     departure = HTTParty.get(departuretimelink)
       departure["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"].each do |hash|
         if hash.has_key?("RouteDirectionList")
