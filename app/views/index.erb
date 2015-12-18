@@ -3,12 +3,19 @@
   var northStops = <%= @northstop_arr %>;
 </script>
 
-<div> <%= @northstop_arr %> </div>
+<div> <%= @northbound_arr %> </div>
 <button id="thing"> thing</button>
 <div id="location"> hello</div>
 <button src="" id="north"> CalTrain NorthBound </button>
 <button src="" id="south"> CalTrain SouthBound </button>
 <div id="map"></div>
+
+<h1> Departure Times </h1>
+  <h2> Northbound </h2>
+  <% @northbound_arr.each_with_index do |stopname, index| %>
+    <h3> <%= index + 1 %>. <%= stopname%></h3>
+  <% end%>
+
 
 
 <script async defer
