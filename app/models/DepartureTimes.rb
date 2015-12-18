@@ -22,5 +22,5 @@ class DepartureTime
           next
         end
       end
-
+      @departuretime
     end

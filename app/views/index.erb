@@ -14,10 +14,7 @@
   <h2> Northbound </h2>
   <% @northbound_arr.each_with_index do |stopname, index| %>
     <h3> <%= index + 1 %>. <%= stopname%></h3>
-    <% @northstop_arr.each do |stopcode| %>
-        <%stop = DepartureTime.new(stopcode)%>
-        <%=stop.get_stops%>
-    <% end%>
+      <%=  @northstop_arr[index]%>
   <% end%>
 
 
