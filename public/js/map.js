@@ -65,7 +65,12 @@ function geocodeAddress(geocoder, resultsMap, transitArr) {
 
         });
          marker.addListener('click', function() {
-
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://services.my511.org/Transit2.0/GetNextDeparturesByStopCode.aspx?token=#{ENV['TRANSIT_API_KEY']}&stopcode=", false);
+            xhr.setRequestHeader('Content-Type', 'text/xml');
+            xhr.send();
+            xmlDocument = xhr.responseXML;
+            console.log(xmlDocument.childNodes['0'].textContent);
             infowindow.open(map, marker);
           });
         var infowindow = new google.maps.InfoWindow({
