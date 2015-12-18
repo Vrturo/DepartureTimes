@@ -44,6 +44,7 @@ var map;
     var geocoder = new google.maps.Geocoder();
     $( "#north" ).click(function(){
       geocodeAddress(geocoder, map, northArr);
+
     });
     $( "#south" ).click(function(){
       geocodeAddress(geocoder, map, southArr);
@@ -63,6 +64,7 @@ function geocodeAddress(geocoder, resultsMap, transitArr) {
           map: map,
 
         });
+            console.log(results);
         var infowindow = new google.maps.InfoWindow({
             content: '<h3>' + results[0]["address_components"][0]["long_name"] + '</h3>'
         });

@@ -19,8 +19,7 @@ get '/' do
   northbound_arr = []
   northstop_arr = []
   @northbound["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"]["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"].each do |key|
-    northbound_arr << key["name"]
-    northstop_arr << key["StopCode"]
+    northbound_arr << { key["name"] => key["StopCode"] }
   end
   @northbound_arr = northbound_arr #array of northbound names
   @northstop_arr = northstop_arr  #array of northbound stop codes
@@ -36,7 +35,7 @@ get '/' do
   @southbound_arr = southbound_arr
   @southstop_arr = southstop_arr
 
-  departuretimelink = "http://services.my511.org/Transit2.0/GetNextDeparturesByStopCode.aspx?token=#{ENV['TRANSIT_API_KEY']}&stopcode=70012"
+  departuretimelink = "http://services.my511.org/Transit2.0/GetNextDeparturesByStopCode.aspx?token=#{ENV['TRANSIT_API_KEY']}&stopcode="
   @departure = HTTParty.get(departuretimelink)
 
 
