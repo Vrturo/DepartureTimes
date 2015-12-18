@@ -65,13 +65,12 @@ function geocodeAddress(geocoder, resultsMap, transitArr) {
 
         });
             console.log(results);
+         marker.addListener('click', function() {
+            infowindow.open(map, marker);
+          });
         var infowindow = new google.maps.InfoWindow({
             content: '<h3>' + results[0]["address_components"][0]["long_name"] + '</h3>'
         });
-         marker.addListener('click', function() {
-            console.log(results[0]);
-            infowindow.open(map, marker);
-          });
         };
     });
   }
