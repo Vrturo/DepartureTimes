@@ -43,7 +43,7 @@ var map;
 
     var geocoder = new google.maps.Geocoder();
     $( "#north" ).click(function(){
-      geocodeAddress(geocoder, map, northArr);
+      geocodeAddress(geocoder, map, northArr, northStops);
 
     });
     $( "#south" ).click(function(){
@@ -51,7 +51,7 @@ var map;
     });
   }
 
-function geocodeAddress(geocoder, resultsMap, transitArr) {
+function geocodeAddress(geocoder, resultsMap, transitArr, stopsArr) {
   for (i = 0; i < transitArr.length; i++) {
     geocoder.geocode({'address': transitArr[i]}, function(results, status) {
       if (status === google.maps.GeocoderStatus.OK) {
@@ -65,8 +65,6 @@ function geocodeAddress(geocoder, resultsMap, transitArr) {
 
         });
          marker.addListener('click', function() {
-
-            console.log(xmlDocument.childNodes['0'].textContent);
             infowindow.open(map, marker);
           });
         var infowindow = new google.maps.InfoWindow({
