@@ -20,6 +20,7 @@ The Backend was written in rails. <br />
 - passing client side data to JS script
 - google api query limit of 13
 - display each departure time for each stop dynamically
+- make API requests from server and client side
 
 
 ### Resources
