@@ -19,7 +19,8 @@ get '/' do
   northbound_arr = []
   northstop_arr = []
   @northbound["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"]["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"].each do |key|
-    northbound_arr << { key["name"] => key["StopCode"] }
+    northbound_arr << key["name"]
+    northstop_arr << { key["name"] => key["StopCode"] }
   end
   @northbound_arr = northbound_arr #array of northbound names
   @northstop_arr = northstop_arr  #array of northbound stop codes
