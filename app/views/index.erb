@@ -10,8 +10,18 @@
 <button src="" id="south"> CalTrain SouthBound </button>
 <div id="map"></div>
 
-<h1> Departure Times </h1>
-  <h2> Northbound </h2>
+
+
+
+<h1 style="text-align:center"> Departure Times </h1>
+
+<table style="width:100%">
+  <tr>
+    <th>Northbound</th>
+    <th>SouthBound</th>
+  </tr>
+</table>
+
   <% @northbound_arr.each_with_index do |stopname, index| %>
     <h3> <%= index + 1 %>. <%= stopname%></h3>
       <%= stopcode = @northstop_arr[index] %>

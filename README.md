@@ -21,7 +21,7 @@ The Backend was written in rails. <br />
 - google api query limit of 13
 - display each departure time for each stop dynamically
 - make API requests from server and client side
-
+- show departure times if all departure times are nil
 
 ### Resources
 
