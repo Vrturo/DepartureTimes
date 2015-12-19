@@ -1,6 +1,6 @@
 class DepartureTime
 
-  attr_accessor :departuretime, :departure
+  attr_accessor :departuretime
   def initialize(stopcode)
     @departuretime = []
     @stopcode = stopcode
@@ -9,30 +9,32 @@ class DepartureTime
   end
 
   def get_stops
-      @departure["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"].each do |hash|
+      @departure["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"].each_with_index do |hash, index|
 
 
 
 
-
-        if hash.has_key?("RouteDirectionList")
-          if hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"] != nil
-            if hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].count < 1
-                hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].each do |time|
-                  @departuretime << "Minutes till next Departure: " + time
-                end
-            end
-          end
-        elsif hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].count >= 1
-            @departuretime << "Minutes till next Departure: " + hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"]
-        else
+        if hash.has_key?("RouteDirectionList") == false
+          @departuretime << "Stop #{index + 1}: No departures within the next hour"
           next
+        elsif hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].nil?
+          @departuretime << "Stop #{index + 1}: No departures within the next hour"
+          next
+        elsif hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].class == Array
+            hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].each do |time|
+              @departuretime << "Stop #{index + 1}: Minutes till next Departure: " + time
+            next
+            end
+        elsif hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].class == String
+            @departuretime << "Stop #{index + 1}: Minutes till next Departure: " + hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"]
+        else
+            @departuretime << "Stop #{index + 1}: No departures within the next hour"
         end
 
 
 
 
-      puts @departuretime
+        return @departuretime.join("<br>")
     end #each
   end #method
 end #class
