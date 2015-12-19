@@ -10,16 +10,29 @@ class DepartureTime
 
   def get_stops
       @departure["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"].each do |hash|
+
+
+
+
+
         if hash.has_key?("RouteDirectionList")
           if hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"] != nil
-              @departuretime << "Minutes till next Departure: " + hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].flatten.to_f.to_s
-          else
-            next
+            if hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].count < 1
+                hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].each do |time|
+                  @departuretime << "Minutes till next Departure: " + time
+                end
+            end
           end
+        elsif hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].count >= 1
+            @departuretime << "Minutes till next Departure: " + hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"]
         else
           next
         end
+
+
+
+
       puts @departuretime
-    end
-  end
-end
+    end #each
+  end #method
+end #class
