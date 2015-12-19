@@ -9,22 +9,24 @@ class DepartureTime
   end
 
   def get_stops
-      @departure.keys.each_with_index do |(key,value), index|
-          value = @departure[key]
-           print "key: #{key}, value: #{value}, index: #{index}\n"
-        # if hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].nil?
-        #   @departuretime << "Stop #{index + 1}: No departures within the next hour"
-        # elsif hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].class == Array
-        #     hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].each do |time|
-        #       @departuretime << "Stop #{index + 1}: Minutes till next Departure: " + time
-        #     end
-        # elsif hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].class == String
-        #     @departuretime << "Stop #{index + 1}: Minutes till next Departure: " + hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"]
-        # else
-        #   @departuretime << "Stop #{index + 1}: No departures within the next hour"
-        # end
+      @departure["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"].each_with_index do |hash, index|
 
-        # return @departuretime.join("<br>")
+        if hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].nil?
+          @departuretime << "Stop #{index + 1}: No departures within the next hour"
+          next
+        elsif hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].class == Array
+            hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].each do |time|
+              @departuretime << "Stop #{index + 1}: Minutes till next Departure: " + time
+            end
+          next
+        elsif hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].class == String
+            @departuretime << "Stop #{index + 1}: Minutes till next Departure: " + hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"]
+          next
+        else
+          @departuretime << "Stop #{index + 1}: No departures within the next hour"
+        end
+
+        return @departuretime.join("<br>")
     end #each
   end #method
 end #class
