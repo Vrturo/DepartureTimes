@@ -11,28 +11,20 @@ class DepartureTime
   def get_stops
       @departure["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"].each_with_index do |hash, index|
 
-
-
-
-        if hash.has_key?("RouteDirectionList") == false
-          @departuretime << "Stop #{index + 1}: No departures within the next hour"
-          next
-        elsif hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].nil?
+        if hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].nil?
           @departuretime << "Stop #{index + 1}: No departures within the next hour"
           next
         elsif hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].class == Array
             hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].each do |time|
               @departuretime << "Stop #{index + 1}: Minutes till next Departure: " + time
-            next
+              next
             end
+          next
         elsif hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].class == String
             @departuretime << "Stop #{index + 1}: Minutes till next Departure: " + hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"]
         else
-            @departuretime << "Stop #{index + 1}: No departures within the next hour"
+          @departuretime << "Stop #{index + 1}: No departures within the next hour"
         end
-
-
-
 
         return @departuretime.join("<br>")
     end #each
