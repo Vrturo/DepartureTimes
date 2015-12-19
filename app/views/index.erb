@@ -15,8 +15,8 @@
   <% @northbound_arr.each_with_index do |stopname, index| %>
     <h3> <%= index + 1 %>. <%= stopname%></h3>
       <%= stopcode = @northstop_arr[index] %>
-      <%# stop = DepartureTime.new(stopcode) %>
-      <%#= stop.get_stops %>
+      <% stop = DepartureTime.new(stopcode) %>
+      <%= stop.get_stops %>
   <% end%>
 
 

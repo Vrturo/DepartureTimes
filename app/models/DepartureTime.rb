@@ -12,16 +12,14 @@ class DepartureTime
       @departure["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"].each do |hash|
         if hash.has_key?("RouteDirectionList")
           if hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"] != nil
-            hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].each do |time|
-                @departuretime << "Minutes till next Departure: " + time.flatten!.to_s
-            end
+              @departuretime << "Minutes till next Departure: " + hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].flatten.to_f.to_s
           else
             next
           end
         else
           next
         end
-      end
       puts @departuretime
     end
+  end
 end
