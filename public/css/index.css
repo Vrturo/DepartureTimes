@@ -20,3 +20,6 @@ table{
 #coordinates{
   text-align: center;
 }
+#south{
+  float: right;
+}
