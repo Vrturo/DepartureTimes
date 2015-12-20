@@ -1,6 +1,8 @@
 <script type="text/javascript">
   var northArr = <%=@northbound_arr%>;
   var northStops = <%= @northstop_arr %>;
+  var southArr = <%=@southbound_arr%>;
+  var southStops = <%= @southstop_arr %>;
 </script>
 <div id="coordinates">
   <h2> Your Coordinates:</h2>
@@ -22,7 +24,7 @@
     <% @northbound_arr.each_with_index do |stopname, index| %>
     <tr>
       <td><h3> <%= index + 1 %>. <%= stopname%></h3></td>
-      <td>  <%= stopcode = @northstop_arr[index] %></td>
+        <% stopcode = @northstop_arr[index] %>
         <%# stop = DepartureTime.new(stopcode) %>
         <td><%#= stop.get_stops %></td>
     </tr>
@@ -35,7 +37,7 @@
     <% @southbound_arr.each_with_index do |stopname, index| %>
     <tr>
       <td><h3> <%= index + 1 %>. <%= stopname%></h3></td>
-      <td>  <%= stopcode = @southstop_arr[index] %></td>
+        <% stopcode = @southstop_arr[index] %>
         <%# stop = DepartureTime.new(stopcode) %>
         <td><%#= stop.get_stops %></td>
     </tr>

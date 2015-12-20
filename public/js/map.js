@@ -37,7 +37,7 @@ var map;
 
     });
     $( "#south" ).click(function(){
-      geocodeAddress(geocoder, map, southArr);
+      geocodeAddress(geocoder, map, southArr, southStops);
     });
   }
 

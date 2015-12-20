@@ -36,21 +36,6 @@ get '/' do
   @southbound_arr = southbound_arr
   @southstop_arr = southstop_arr
 
-  # departuretimelink = "http://services.my511.org/Transit2.0/GetNextDeparturesByStopCode.aspx?token=#{ENV['TRANSIT_API_KEY']}&stopcode=70041"
-  # departuretime = []
-  # @departure = HTTParty.get(departuretimelink)
-  # @departure["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"].each do |hash|
-  #   if hash.has_key?("RouteDirectionList")
-  #     if hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"] != nil
-  #         departuretime << "Minutes till next Departure: " + hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"]
-  #   else
-  #     next
-  #   end
-  #   else
-  #     next
-  #   end
-  # @departuretime = departuretime
-  # end
 
   erb :index
 end
