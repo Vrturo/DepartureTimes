@@ -4,12 +4,14 @@
   var southArr = <%=@southbound_arr%>;
   var southStops = <%= @southstop_arr %>;
 </script>
-<div><%=@route_code%></div>
+<div><%#=@routeagency%></div>
+<br>
+<br>
 <div>
-  <%@route_code.each do |code| %>
-    <% bart = Bart.new(code)%>
+  <%#@route_code.each do |code| %>
+    <% bart = Muni.new("10", "Inbound")%>
     <%= bart.get_stops%>
-  <%end%>
+  <%#end%>
 </div>
 <div id="coordinates">
   <h2> Your Coordinates:</h2>

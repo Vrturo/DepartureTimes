@@ -12,19 +12,16 @@ get '/' do
 
 
 
-  routeforagencylink = "http://services.my511.org/Transit2.0/GetRoutesForAgency.aspx?token=#{ENV['TRANSIT_API_KEY']}&agencyName=BART"
+  routeforagencylink = "http://services.my511.org/Transit2.0/GetRoutesForAgency.aspx?token=#{ENV['TRANSIT_API_KEY']}&agencyName=SF-MUNI"
   @routeagency = HTTParty.get(routeforagencylink)
-  route_name = []
-  route_code = []
-  @routeagency["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"].each do |key|
-    route_name << key["Name"]
-    route_code << key["Code"]
-  end
-  @route_name = route_name
-  @route_code = route_code
-
-  bartlink = "http://services.my511.org/Transit2.0/GetStopsForRoute.aspx?token=#{ENV['TRANSIT_API_KEY']}&routeIDF=BART~917"
-
+  # route_code = []
+  # route_direction_code = []
+  # @routeagency["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"].each do |key|
+  #   route_code << key["Name"]
+  #   route_direction_code << key["Code"]
+  # end
+  # @route_name = route_name
+  # @route_code = route_code
 
 
 
