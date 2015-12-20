@@ -2,10 +2,10 @@
   var northArr = <%=@northbound_arr%>;
   var northStops = <%= @northstop_arr %>;
 </script>
-
-<div>  </div>
-<button id="thing"> thing</button>
-<div id="location"> hello</div>
+<div id="coordinates">
+  <h2> Your Coordinates:</h2>
+  <div id="location"> hello</div>
+</div>
 <button src="" id="north"> CalTrain NorthBound </button>
 <button src="" id="south"> CalTrain SouthBound </button>
 <div id="map"></div>
@@ -14,21 +14,34 @@
 
 
 <h1 style="text-align:center"> Departure Times </h1>
-
-<table style="width:100%">
-  <tr>
-    <th>Northbound</th>
-    <th>SouthBound</th>
-  </tr>
-</table>
-
-  <% @northbound_arr.each_with_index do |stopname, index| %>
-    <h3> <%= index + 1 %>. <%= stopname%></h3>
-      <%= stopcode = @northstop_arr[index] %>
-      <div>
-      <% stop = DepartureTime.new(stopcode) %>
-      <%= stop.get_stops %>
-  <% end%>
+<div id="table_container">
+  <table style="width:50%">
+    <tr>
+      <th><h2>Northbound</h2></th>
+    </tr>
+    <% @northbound_arr.each_with_index do |stopname, index| %>
+    <tr>
+      <td><h3> <%= index + 1 %>. <%= stopname%></h3></td>
+      <td>  <%= stopcode = @northstop_arr[index] %></td>
+        <%# stop = DepartureTime.new(stopcode) %>
+        <td><%#= stop.get_stops %></td>
+    </tr>
+    <% end%>
+  </table>
+  <table style="width:50%">
+    <tr>
+      <th><h2>Southbound</h2></th>
+    </tr>
+    <% @southbound_arr.each_with_index do |stopname, index| %>
+    <tr>
+      <td><h3> <%= index + 1 %>. <%= stopname%></h3></td>
+      <td>  <%= stopcode = @southstop_arr[index] %></td>
+        <%# stop = DepartureTime.new(stopcode) %>
+        <td><%#= stop.get_stops %></td>
+    </tr>
+    <% end%>
+  </table>
+</div>
 
 
 

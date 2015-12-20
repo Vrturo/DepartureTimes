@@ -2,6 +2,21 @@ html, body {
   height: 100%; margin: 0; padding: 0;
 }
 #map {
-  height: 100%;
+  height: 50%;
   width: 80%;
+  margin: 0 auto;
+}
+
+#table_container{
+  margin:0 auto;
+
+}
+
+table{
+  border: 1px solid black;
+  float:left;
+  width:50%
+}
+#coordinates{
+  text-align: center;
 }
