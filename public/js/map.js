@@ -27,16 +27,6 @@ var map;
       draggable: false,
       map: map
     });
-     var miles = .5;
-     var circle = new google.maps.Circle({
-            center: map.getCenter(),
-            radius: miles * 1609.344, // 1 mile = 1609.344 meters
-            fillColor: "#ff69b4",
-            fillOpacity: 0.5,
-            strokeOpacity: 0.0,
-            strokeWeight: 0,
-            map: map
-        });
 
     var transitLayer = new google.maps.TransitLayer();
     transitLayer.setMap(map);
