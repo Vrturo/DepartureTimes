@@ -2,9 +2,10 @@ html, body {
   height: 100%; margin: 0; padding: 0;
 }
 #map {
-  height: 50%;
-  width: 80%;
+  height: 60%;
+  width: 35%;
   margin: 0 auto;
+  border-radius: 50%;
 }
 
 #table_container{
