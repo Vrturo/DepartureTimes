@@ -52,7 +52,6 @@ function geocodeAddress(geocoder, resultsMap, transitArr, stopsArr) {
           icon: "/img/icontrain.png",
           draggable: false,
           map: map,
-
         });
          marker.addListener('click', function() {
             infowindow.open(map, marker);
@@ -60,12 +59,11 @@ function geocodeAddress(geocoder, resultsMap, transitArr, stopsArr) {
         var infowindow = new google.maps.InfoWindow({
             content: '<h3>' + results[0]["address_components"][0]["long_name"] + '</h3>'
         });
-        };
+
+      };
     });
   }
 };
-
-
 
 $( document ).ready(function() {
   getLocation();
