@@ -20,7 +20,8 @@ class Muni
 
   def show_stops
     self.get_stopcode_and_name
-
+    @stopcode
+    HTTParty.get("http://services.my511.org/Transit2.0/GetNextDeparturesByStopCode.aspx?token=#{ENV['TRANSIT_API_KEY']}&stopcode=13546")
   end
 
 end
