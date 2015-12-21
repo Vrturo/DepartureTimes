@@ -34,8 +34,9 @@
     <% @northbound_arr.each_with_index do |stopname, index| %>
     <tr>
       <td><h3> <%= index + 1 %>. <%= stopname%></h3></td>
-        <% stopcode = @northstop_arr[index] %>
-        <% stop = CalTrain.new(stopcode) %>
+        <%#= stopcode = @northstop_arr[index] %>
+        <% stopname_no_spaces = stopname.delete(" ")%>
+        <% stop = CalTrain.new(stopname_no_spaces) %>
         <td><%= stop.get_stops %></td>
     </tr>
     <% end%>
@@ -47,7 +48,7 @@
     <% @southbound_arr.each_with_index do |stopname, index| %>
     <tr>
       <td><h3> <%= index + 1 %>. <%= stopname%></h3></td>
-        <%#= stopcode = @southstop_arr[index] %>
+        <%# stopcode = @southstop_arr[index] %>
         <%# stop = CalTrain.new(stopcode) %>
         <td><%#= stop.get_stops %></td>
     </tr>
