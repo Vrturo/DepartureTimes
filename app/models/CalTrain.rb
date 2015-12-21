@@ -13,7 +13,7 @@ class CalTrain
 
         if hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].nil?
           @departuretime << "Stop #{index + 1}: No departures within the next hour"
-          next
+
         elsif hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].class == Array
             hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].each do |time|
               @departuretime << "Stop #{index + 1}: Minutes till next Departure: " + time

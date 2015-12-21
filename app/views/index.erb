@@ -34,8 +34,8 @@
     <tr>
       <td><h3> <%= index + 1 %>. <%= stopname%></h3></td>
         <% stopcode = @northstop_arr[index] %>
-        <%# stop = DepartureTime.new(stopcode) %>
-        <td><%#= stop.get_stops %></td>
+        <% stop = CalTrain.new(stopcode) %>
+        <td><%= stop.get_stops %></td>
     </tr>
     <% end%>
   </table>
@@ -47,7 +47,7 @@
     <tr>
       <td><h3> <%= index + 1 %>. <%= stopname%></h3></td>
         <% stopcode = @southstop_arr[index] %>
-        <%# stop = DepartureTime.new(stopcode) %>
+        <%# stop = CalTrain.new(stopcode) %>
         <td><%#= stop.get_stops %></td>
     </tr>
     <% end%>
