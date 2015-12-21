@@ -1,5 +1,6 @@
 get '/' do
 
+  # Hit the get agency query so I could see my possible public transportation agencies I could choose from
   agencylink = "http://services.my511.org/Transit2.0/GetAgencies.aspx?token=#{ENV['TRANSIT_API_KEY']}"
   agency = HTTParty.get(agencylink)
   agency_arr = []
@@ -9,20 +10,6 @@ get '/' do
     end
   end
   @agency_arr = agency_arr #get list of all public transportation with route
-
-
-
-  routeforagencylink = "http://services.my511.org/Transit2.0/GetRoutesForAgency.aspx?token=#{ENV['TRANSIT_API_KEY']}&agencyName=SF-MUNI"
-  @routeagency = HTTParty.get(routeforagencylink)
-  # route_code = []
-  # route_direction_code = []
-  # @routeagency["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"].each do |key|
-  #   route_code << key["Name"]
-  #   route_direction_code << key["Code"]
-  # end
-  # @route_name = route_name
-  # @route_code = route_code
-
 
 
   northboundlink = "http://services.my511.org/Transit2.0/GetStopsForRoute.aspx?routeIDF=Caltrain~LOCAL~NB&token=#{ENV['TRANSIT_API_KEY']}"

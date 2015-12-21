@@ -24,3 +24,29 @@ table{
 #south{
   float: right;
 }
+
+.buttonWrap{
+  text-align: center;
+}
+#mapButton {
+  width: 11%;
+   margin:auto;
+   display:block;
+   border-top: 1px solid #96d1f8;
+   background: #65a9d7;
+   padding: 14px 28px;
+   border-radius: 21px;
+   color: white;
+   font-size: 15px;
+   font-family: 'Lucida Grande', Helvetica, Arial, Sans-Serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+#mapButton:hover {
+   background: #000000;
+   color: #7a8cff;
+   cursor: pointer;
+   }
+#mapButton:active {
+   background: #1b435e;
+   }

@@ -4,33 +4,28 @@
   var southArr = <%=@southbound_arr%>;
   var southStops = <%= @southstop_arr %>;
 </script>
-<div><%#=@routeagency%></div>
-<div><%=@southbound%></div>
-<br>
-<br>
-<div>
-  <%#@route_code.each do |code| %>
-    <% bart = Muni.new("10", "Inbound")%>
-    <%= bart.show_stops%>
-  <%#end%>
-</div>
+
 <div id="coordinates">
   <h2> Your Coordinates:</h2>
-  <div id="location"> hello</div>
+  <div id="location"> <h3>Hello!</h3></div>
 </div>
-<button src="" id="north"> CalTrain NorthBound </button>
-<button src="" id="south"> CalTrain SouthBound </button>
+<br>
+
 <div id="map"></div>
 
+<h1 style="text-align:center"> Caltrain Departure Times </h1>
+<div class="buttonWrap"
+  <button src="" id="mapButton"> Show Caltrain Stops!</button>
+</div>
+<br>
+<br>
 
-
-
-<h1 style="text-align:center"> Departure Times </h1>
 <div id="table_container">
   <table style="width:50%">
     <tr>
       <th><h2>Northbound</h2></th>
     </tr>
+
     <% @northbound_arr.each_with_index do |stopname, index| %>
     <tr>
       <td><h3> <%= index + 1 %>. <%= stopname%></h3></td>
@@ -48,8 +43,8 @@
     <tr>
       <td><h3> <%= index + 1 %>. <%= stopname%></h3></td>
         <%# stopcode = @southstop_arr[index] %>
-        <%# stop = CalTrain.new(stopcode) %>
-        <td><%#= stop.get_stops %></td>
+        <% stop = CalTrain.new(stopname, @northstop_arr[index] ) %>
+        <td><%= stop.get_stops_by_name %></td>
     </tr>
     <% end%>
   </table>

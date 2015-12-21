@@ -32,7 +32,7 @@ var map;
     transitLayer.setMap(map);
 
     var geocoder = new google.maps.Geocoder();
-    $( "#north" ).click(function(){
+    $( "#mapButton" ).click(function(){
       geocodeAddress(geocoder, map, northArr, northStops);
 
     });
