@@ -1,4 +1,4 @@
-class DepartureTime
+class CalTrain
 
   attr_accessor :departuretime
   def initialize(stopcode)
