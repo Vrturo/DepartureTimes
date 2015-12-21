@@ -35,9 +35,8 @@
     <tr>
       <td><h3> <%= index + 1 %>. <%= stopname%></h3></td>
         <%#= stopcode = @northstop_arr[index] %>
-        <% stopname_no_spaces = stopname.delete(" ")%>
-        <% stop = CalTrain.new(stopname_no_spaces) %>
-        <td><%= stop.get_stops %></td>
+        <% stop = CalTrain.new(stopname, @northstop_arr[index] ) %>
+        <td><%= stop.get_stops_by_name %></td>
     </tr>
     <% end%>
   </table>
