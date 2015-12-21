@@ -12,18 +12,21 @@ class CalTrain
       @departure["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"].each_with_index do |hash, index|
 
         if hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].nil?
-          @departuretime << "Stop #{index + 1}: No departures within the next hour"
+          @departuretime << "No departures within the next hour"
 
-        elsif hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].class == Array
-            hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].each do |time|
-              @departuretime << "Stop #{index + 1}: Minutes till next Departure: " + time
-            end
-          next
-        elsif hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].class == String
-            @departuretime << "Stop #{index + 1}: Minutes till next Departure: " + hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"]
-          next
-        else
-          @departuretime << "Stop #{index + 1}: No departures within the next hour"
+        else hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].has_key?("DepartureTime")
+
+          if hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].class == Array
+              hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].each do |time|
+                @departuretime << "Stop #{index + 1}: Minutes till next Departure: " + time
+              end
+            next
+          elsif hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].class == String
+              @departuretime << "Stop #{index + 1}: Minutes till next Departure: " + hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"]
+            next
+          else
+            @departuretime << "Stop #{index + 1}: No departures within the next hour"
+          end
         end
 
         return @departuretime.join("<br>")
