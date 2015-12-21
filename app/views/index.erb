@@ -5,6 +5,7 @@
   var southStops = <%= @southstop_arr %>;
 </script>
 <div><%#=@routeagency%></div>
+<div><%=@southbound%></div>
 <br>
 <br>
 <div>
@@ -46,7 +47,7 @@
     <% @southbound_arr.each_with_index do |stopname, index| %>
     <tr>
       <td><h3> <%= index + 1 %>. <%= stopname%></h3></td>
-        <% stopcode = @southstop_arr[index] %>
+        <%#= stopcode = @southstop_arr[index] %>
         <%# stop = CalTrain.new(stopcode) %>
         <td><%#= stop.get_stops %></td>
     </tr>

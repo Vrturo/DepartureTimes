@@ -8,7 +8,7 @@ get '/' do
       agency_arr << key
     end
   end
-  @agency_arr = agency_arr
+  @agency_arr = agency_arr #get list of all public transportation with route
 
 
 
