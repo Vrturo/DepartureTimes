@@ -22,7 +22,8 @@ The Backend was written in rails. <br />
 - display each departure time for each stop dynamically
 - make API requests from server and client side
 - show departure times if all departure times are nil
-
+- APi shows a bad uri of forstopname when its by stopname
+- hard to see if api is working when caltrain isnt running
 ### Resources
 
 https://developers.google.com/maps/<br>
