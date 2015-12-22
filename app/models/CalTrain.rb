@@ -9,25 +9,25 @@ class CalTrain
     agency_link = "http://services.my511.org/Transit2.0/GetRoutesForAgency.aspx?token=#{ENV['TRANSIT_API_KEY']}&agencyName=#{@agency_name}"
     routes = HTTParty.get(agency_link)
     route_code_hash = {route_codes: []}
-    route_direction_code_arr = []
     routes["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"].each do |route|
       #set route name as keys
       route["RouteDirectionList"]["RouteDirection"].each do |route_direction|
-      route_code_hash[:route_codes] << {:"#{route['Code']}" => [route_direction]} # set route[Code] as a new hash that stores an array
+        route_code_hash[:route_codes] << {route['Code'] => [route_direction]} # set route[Code] as a new hash that stores an array
         end
     end
-    route_code_hash
+    route_code_hash[:route_codes]
   end
 
   def get_stops_for_routes
-    self.get_route
-    route_code_arr.each do |route_code|
-      route_direction_code_arr.each do |route_direction|
-        stops_for_routes_link = "http://services.my511.org/Transit2.0/GetStopsForRoute.aspx?token=#{ENV['TRANSIT_API_KEY']}&routeIDF=#{@agency_name}~#{route_code}~#{route_direction}"
-        stops = HTTParty.get(stops_for_routes_link)
-
+    arr = []
+    self.get_route.each do |key, value| #[{"BABY BULLET" => }]
+         key.each do |k , v|
+          arr << k
+      #   stops_for_routes_link = "http://services.my511.org/Transit2.0/GetStopsForRoute.aspx?token=#{ENV['TRANSIT_API_KEY']}&routeIDF=#{@agency_name}~#{route_direction}~#{route_direction['Code']}"
+      #   stops = HTTParty.get(stops_for_routes_link)
+        end
       end
-    end
+      arr
   end
 
 
