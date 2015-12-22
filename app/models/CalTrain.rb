@@ -44,11 +44,31 @@ class CalTrain
   end
 
 
+
+  def nested_hash_value(obj,key)
+    if obj.respond_to?(:key?) && obj.key?(key)
+      obj[key]
+    elsif obj.respond_to?(:each)
+      r = nil
+      obj.find{ |*a| r=nested_hash_value(a.last,key) }
+      r
+    end
+  end
+
   def get_next_departuretime_by_code
-    arr = []
-    self.get_stops_for_routes.each do |stop_code_hash|
-      stop_code_hash["RTT"]["AgencyList"]["Agency"].each_with_index do |(k,v), index|
-        arr << v
+
+    # arr = []
+    # self.get_stops_for_routes.each do |stop_code_hash|
+      self.nested_hash_value(self.get_stops_for_routes, "StopCode")
+      # arr << stop_code_hash
+      # stop_code_hash["RTT"]["AgencyList"]["Agency"].each do |k, v|
+        # if k == "RouteList"
+        #    k["RouteList"]["Route"]["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"].each do |key, value|
+        #       arr << key
+        #     end
+        # end
+        #  end
+        # arr << v
       # stop_code_departuretime_link = "http://services.my511.org/Transit2.0/GetNextDeparturesByStopCode.aspx?token=#{ENV['TRANSIT_API_KEY']}&stopcode=#{stopcode}"
       # code_departure = HTTParty.get(stop_code_departuretime_link)
 
@@ -70,9 +90,9 @@ class CalTrain
       # end
 
       # return @stopcode_departuretime.join("<br>")
-      end #each
-    end #each
-    arr
+      # end #each
+    # end #each
+    # arr
   end #method
 
 end #class
