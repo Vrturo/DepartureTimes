@@ -12,14 +12,9 @@ class CalTrain
     route_direction_code_arr = []
     routes["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"].each do |route|
       #set route name as keys
-      # route_code = route["Code"]
-      route_code_hash[:route_codes] << {route["Code"] => []} # set route[Code] as a new hash that stores an array
-
-    # end
-    # routes["RouteDirectionList"]["RouteDirection"].each do |route_direction|
-        # p route_direction["Code"]
-         # route_direction_code_arr << route_direction["Code"]
-      # end
+      route["RouteDirectionList"]["RouteDirection"].each do |route_direction|
+      route_code_hash[:route_codes] << {:"#{route['Code']}" => [route_direction]} # set route[Code] as a new hash that stores an array
+        end
     end
     route_code_hash
   end
