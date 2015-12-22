@@ -30,7 +30,15 @@ class CalTrain
       stops
   end
 
-
+  def get_next_departures
+    arr = []
+    self.get_stops_for_routes.each do |stop_code_hash|
+      stop_code_hash.each do |k, v|
+        arr << k
+      end
+    end
+      arr
+  end
 
   def get_stops_by_name(stopname)
     @stopname = stopname.delete(" ") #delete white space for html request
