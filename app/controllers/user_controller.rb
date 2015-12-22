@@ -12,7 +12,7 @@ get '/' do
   @agency_arr = agency_arr #get list of all public transportation with route
 
 
-  northboundlink = "http://services.my511.org/Transit2.0/GetStopsForRoute.aspx?routeIDF=Caltrain~LOCAL~NB&token=#{ENV['TRANSIT_API_KEY']}"
+  northboundlink = "http://services.my511.org/Transit2.0/GetStopsForRoute.aspx?routeIDF=Caltrain~LIMITED~NB&token=#{ENV['TRANSIT_API_KEY']}"
   @northbound = HTTParty.get(northboundlink)
   northbound_arr = []
   northstop_arr = []
@@ -23,7 +23,7 @@ get '/' do
   @northbound_arr = northbound_arr #array of northbound names
   @northstop_arr = northstop_arr  #array of northbound stop codes
 
-  southboundlink = "http://services.my511.org/Transit2.0/GetStopsForRoute.aspx?routeIDF=Caltrain~LOCAL~SB1&token=#{ENV['TRANSIT_API_KEY']}"
+  southboundlink = "http://services.my511.org/Transit2.0/GetStopsForRoute.aspx?routeIDF=Caltrain~LIMITED~SB1&token=#{ENV['TRANSIT_API_KEY']}"
   @southbound = HTTParty.get(southboundlink)
   southbound_arr = []
   southstop_arr = []

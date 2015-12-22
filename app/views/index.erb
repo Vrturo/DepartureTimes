@@ -5,6 +5,11 @@
   var southStops = <%= @southstop_arr %>;
 </script>
 
+<div>
+  <% neww = CalTrain.new%>
+  <%= neww.get_route%>
+</div>
+
 <div id="coordinates">
   <h2> Your Coordinates:</h2>
   <div id="location"> <h3>Hello!</h3></div>
@@ -26,27 +31,27 @@
       <th><h2>Northbound</h2></th>
     </tr>
 
-    <% @northbound_arr.each_with_index do |stopname, index| %>
+    <%# @northbound_arr.each_with_index do |stopname, index| %>
     <tr>
-      <td><h3> <%= index + 1 %>. <%= stopname%></h3></td>
+      <td><h3> <%#= index + 1 %>. <%#= stopname%></h3></td>
         <%#= stopcode = @northstop_arr[index] %>
-        <% stop = CalTrain.new(stopname, @northstop_arr[index] ) %>
-        <td><%= stop.get_stops_by_name %></td>
+        <%# stop = CalTrain.new(stopname, @northstop_arr[index] ) %>
+        <td><%#= stop.get_stops_by_name %></td>
     </tr>
-    <% end%>
+    <%# end%>
   </table>
   <table style="width:50%">
     <tr>
       <th><h2>Southbound</h2></th>
     </tr>
-    <% @southbound_arr.each_with_index do |stopname, index| %>
+    <%# @southbound_arr.each_with_index do |stopname, index| %>
     <tr>
-      <td><h3> <%= index + 1 %>. <%= stopname%></h3></td>
+      <td><h3> <%#= index + 1 %>. <%#= stopname%></h3></td>
         <%# stopcode = @southstop_arr[index] %>
-        <% stop = CalTrain.new(stopname, @northstop_arr[index] ) %>
-        <td><%= stop.get_stops_by_name %></td>
+        <%# stop = CalTrain.new(stopname, @southstop_arr[index] ) %>
+        <td><%#= stop.get_stops_by_code %></td>
     </tr>
-    <% end%>
+    <%# end%>
   </table>
 </div>
 
