@@ -30,37 +30,27 @@ class CalTrain
       stops
   end
 
-  def get_next_departures
-    arr = []
-    self.get_stops_for_routes.each do |stop_code_hash|
-      stop_code_hash.each do |k, v|
-        arr << k
-      end
-    end
-      arr
-  end
-
   def get_stops_by_name(stopname)
     @stopname = stopname.delete(" ") #delete white space for html request
     stopname_departuretime = []
     stop_name_departuretime_link = "http://services.my511.org/Transit2.0/GetNextDeparturesByStopName.aspx?token=#{ENV['TRANSIT_API_KEY']}&agencyName=Caltrain&stopName=#{@stopname}"
     name_departure = HTTParty.get(stop_name_departuretime_link)
-
-
     if name_departure["RTT"]["AgencyList"]["Info"].include?("No Predictions Available")
       "No stops within the next 90 minutes"
       @name_departure
     else
       "There are stops available!"
     end
-
   end
 
-  def get_stops_by_code(stopcode)
-    stopcode_departuretime = []
-    stop_code_departuretime_link = "http://services.my511.org/Transit2.0/GetNextDeparturesByStopCode.aspx?token=#{ENV['TRANSIT_API_KEY']}&stopcode=#{stopcode}"
-    code_departure = HTTParty.get(stop_code_departuretime_link)
-    code_departure#["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"].each_with_index do |hash, index|
+
+  def get_next_departuretime_by_code
+    arr = []
+    self.get_stops_for_routes.each do |stop_code_hash|
+      stop_code_hash["RTT"]["AgencyList"]["Agency"].each_with_index do |(k,v), index|
+        arr << v
+      # stop_code_departuretime_link = "http://services.my511.org/Transit2.0/GetNextDeparturesByStopCode.aspx?token=#{ENV['TRANSIT_API_KEY']}&stopcode=#{stopcode}"
+      # code_departure = HTTParty.get(stop_code_departuretime_link)
 
       # if hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].nil?
       #   @stopcode_departuretime << "No departures within the next hour"
@@ -80,7 +70,9 @@ class CalTrain
       # end
 
       # return @stopcode_departuretime.join("<br>")
-  # end #each
+      end #each
+    end #each
+    arr
   end #method
 
 end #class
