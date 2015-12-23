@@ -35,9 +35,7 @@ class CalTrain
     arr = []
     second_arr = []
     third_arr = []
-
     self.get_stops_for_routes.each do |stop_code_hash|
-      # arr << stop_code_hash
         stop_code_hash["RTT"]["AgencyList"]["Agency"].each do |array| #array of values
           arr << array
         end
@@ -62,6 +60,36 @@ class CalTrain
       end
       stop_code_departuretime
   end #method
+
+  def display_departures
+    route_hash_arr = []
+    second_arr = []
+    third_arr = []
+    self.get_next_departuretime_by_code.each do |stop_code_hash|
+        route_hash_arr << stop_code_hash["RTT"]["AgencyList"]["Agency"]["RouteList"]
+    end
+    route_hash_arr
+        # flattened_arr = arr.flatten!
+        # flattened_arr.each do |item|
+
+        #   if item.class == Hash
+        #     second_arr << item
+        #   else
+        #     next
+        #   end
+          # second_arr.find {|x| x["Route"] }
+
+            # k["Route"]["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"].each do |item|
+              # third_arr << item["StopCode"]
+            # end
+        # end
+    # end
+     route_hash_arr
+    # third_arr
+    # hash_flatten second_arr
+  end #method
+
+
 
 end #class
 
