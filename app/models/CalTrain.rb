@@ -33,16 +33,42 @@ class CalTrain
   def get_next_departuretime_by_code
     hash = self.get_stops_for_routes
     arr = []
+    second_arr = []
 
     self.get_stops_for_routes.each do |stop_code_hash|
-      arr << nested_hash_value(stop_code_hash, "StopCode")
       # arr << stop_code_hash
-      # stop_code_hash["RTT"]["AgencyList"]["Agency"].each do |k, v|
-        # if k == "RouteList"
-        #    k["RouteList"]["Route"]["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"].each do |key, value|
-        #       arr << key
-        #     end
+        stop_code_hash["RTT"]["AgencyList"]["Agency"].each do |array| #array of values
+          arr << array
+        end
+        flattened_arr = arr.flatten!
+        flattened_arr.each do |item|
+          if item.class == Hash
+            second_arr << item
+          else
+            next
+          end
+
+        end
+
+          # array.each do |item|
+          # if item["Route"]
+          #   arr << item
+          # end
         # end
+
+      #   array.each do |i|
+      #     if i["Route"]
+      #       # i["Route"]["RouteDirectionList"].each do |thing|
+      #         arr << i["Route"]["RouteDirectionList"]
+      #       end
+      #   end
+        #    k["Route"].each do |key, value|
+        #       arr << value
+        #     end
+        # else
+        #   next
+        # end
+      end
         #  end
         # arr << v
       # stop_code_departuretime_link = "http://services.my511.org/Transit2.0/GetNextDeparturesByStopCode.aspx?token=#{ENV['TRANSIT_API_KEY']}&stopcode=#{stopcode}"
@@ -67,9 +93,9 @@ class CalTrain
 
       # return @stopcode_departuretime.join("<br>")
       # end #each
-    end #each
-    # arr
-    hash
+    # end #each
+    second_arr
+    # hash
   end #method
 
 end #class
