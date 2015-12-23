@@ -34,6 +34,7 @@ class CalTrain
     hash = self.get_stops_for_routes
     arr = []
     second_arr = []
+    third_arr = []
 
     self.get_stops_for_routes.each do |stop_code_hash|
       # arr << stop_code_hash
@@ -47,7 +48,11 @@ class CalTrain
           else
             next
           end
-
+          second_arr.each do |k, v|
+            k["Route"]["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"].each do |item|
+              third_arr << item["StopCode"]
+            end
+          end
         end
 
           # array.each do |item|
@@ -94,7 +99,7 @@ class CalTrain
       # return @stopcode_departuretime.join("<br>")
       # end #each
     # end #each
-    second_arr
+    third_arr.uniq
     # hash
   end #method
 
