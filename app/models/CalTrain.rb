@@ -54,29 +54,24 @@ class CalTrain
             end
           end
         end
-
-          # array.each do |item|
-          # if item["Route"]
-          #   arr << item
-          # end
-        # end
-
-      #   array.each do |i|
-      #     if i["Route"]
-      #       # i["Route"]["RouteDirectionList"].each do |thing|
-      #         arr << i["Route"]["RouteDirectionList"]
-      #       end
-      #   end
-        #    k["Route"].each do |key, value|
-        #       arr << value
-        #     end
-        # else
-        #   next
-        # end
       end
-        #  end
-        # arr << v
-      # stop_code_departuretime_link = "http://services.my511.org/Transit2.0/GetNextDeparturesByStopCode.aspx?token=#{ENV['TRANSIT_API_KEY']}&stopcode=#{stopcode}"
+      stop_code_departuretime = []
+      third_arr.uniq.each do |stop_code|
+        stop_code_departuretime_link = "http://services.my511.org/Transit2.0/GetNextDeparturesByStopCode.aspx?token=#{ENV['TRANSIT_API_KEY']}&stopcode=#{stop_code}"
+        stop_code_departuretime << HTTParty.get(stop_code_departuretime_link)
+      end
+      stop_code_departuretime
+  end #method
+
+end #class
+
+
+
+
+
+
+
+
       # code_departure = HTTParty.get(stop_code_departuretime_link)
 
       # if hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].nil?
@@ -99,8 +94,4 @@ class CalTrain
       # return @stopcode_departuretime.join("<br>")
       # end #each
     # end #each
-    third_arr.uniq
-    # hash
-  end #method
-
-end #class
+         # hash
