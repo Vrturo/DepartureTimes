@@ -24,6 +24,8 @@ The Backend was written in rails. <br />
 - show departure times if all departure times are nil
 - APi shows a bad uri of forstopname when its by stopname
 - hard to see if api is working when caltrain isnt running
+- loop through nested hash finding the appropriate keys for stopcode
+- loop through arrays of nested hashes and arrays
 ### Resources
 
 https://developers.google.com/maps/<br>
