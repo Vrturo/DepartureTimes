@@ -30,25 +30,12 @@ class CalTrain
       stops
   end
 
-  def get_stops_by_name(stopname)
-    @stopname = stopname.delete(" ") #delete white space for html request
-    stopname_departuretime = []
-    stop_name_departuretime_link = "http://services.my511.org/Transit2.0/GetNextDeparturesByStopName.aspx?token=#{ENV['TRANSIT_API_KEY']}&agencyName=Caltrain&stopName=#{@stopname}"
-    name_departure = HTTParty.get(stop_name_departuretime_link)
-    if name_departure["RTT"]["AgencyList"]["Info"].include?("No Predictions Available")
-      "No stops within the next 90 minutes"
-      @name_departure
-    else
-      "There are stops available!"
-    end
-  end
-
-
   def get_next_departuretime_by_code
-    self.get_stops_for_routes
-    # arr = []
-    # self.get_stops_for_routes.each do |stop_code_hash|
-      nested_hash_value(self.get_stops_for_routes, "StopCode")
+    hash = self.get_stops_for_routes
+    arr = []
+
+    self.get_stops_for_routes.each do |stop_code_hash|
+      arr << nested_hash_value(stop_code_hash, "StopCode")
       # arr << stop_code_hash
       # stop_code_hash["RTT"]["AgencyList"]["Agency"].each do |k, v|
         # if k == "RouteList"
@@ -80,8 +67,9 @@ class CalTrain
 
       # return @stopcode_departuretime.join("<br>")
       # end #each
-    # end #each
+    end #each
     # arr
+    hash
   end #method
 
 end #class
