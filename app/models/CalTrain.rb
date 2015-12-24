@@ -39,10 +39,10 @@ class CalTrain
     second_arr = []
     # third_arr = []
     self.get_stops_for_routes.each do |stop_code_hash|
-        arr = stop_code_hash["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"]
+        arr = stop_code_hash["RTT"]["AgencyList"]["Agency"]["RouteList"]
     end
 
-    # arr
+    ap arr["Route"]
           # arr = k
     #     end
     #     flattened_arr = arr.flatten!
@@ -64,7 +64,7 @@ class CalTrain
     #     stop_code_departuretime_link = "http://services.my511.org/Transit2.0/GetNextDeparturesByStopCode.aspx?token=#{ENV['TRANSIT_API_KEY']}&stopcode=#{stop_code}"
     #     stop_code_departuretime << HTTParty.get(stop_code_departuretime_link)
       # end
-      ap arr
+      # ap arr
     #   stop_code_departuretime
   end #method
 
