@@ -35,13 +35,13 @@ class CalTrain
   end
 
   def get_next_departuretime_by_code
-    # ap self.get_stops_for_routes
     arr = []
     # second_arr = []
     # third_arr = []
     self.get_stops_for_routes.each do |stop_code_hash|
-        arr = stop_code_hash["RTT"]["AgencyList"]["Agency"]
-        #   arr = array
+        arr = stop_code_hash["RTT"]["AgencyList"]["Agency"]["RouteList"]
+
+          # arr = k
     #     end
     #     flattened_arr = arr.flatten!
     #     flattened_arr.each do |item|
