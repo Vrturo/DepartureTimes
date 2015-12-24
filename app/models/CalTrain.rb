@@ -66,9 +66,9 @@ class CalTrain
     second_arr = []
     third_arr = []
     self.get_next_departuretime_by_code.each do |stop_code_hash|
-        route_hash_arr << stop_code_hash["RTT"]["AgencyList"]["Agency"]["RouteList"]
+       route_hash_arr << stop_code_hash["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"]
     end
-    route_hash_arr
+    ap route_hash_arr
         # flattened_arr = arr.flatten!
         # flattened_arr.each do |item|
 
@@ -84,7 +84,7 @@ class CalTrain
             # end
         # end
     # end
-     route_hash_arr
+     # pp route_hash_arr
     # third_arr
     # hash_flatten second_arr
   end #method
