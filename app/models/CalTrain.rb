@@ -36,8 +36,7 @@ class CalTrain
 
   def get_next_departuretime_by_code
     arr = []
-    second_arr = []
-    # third_arr = []
+    stopcode_arr = []
     self.get_stops_for_routes.each do |stop_code_hash| #weed out nil classes
         if stop_code_hash["RTT"]["AgencyList"]["Agency"]["RouteList"]
           arr << stop_code_hash["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"]
@@ -45,19 +44,17 @@ class CalTrain
           next
         end
     end
-    # ap arr
     arr.each do |route_list_hash|
       route_list_hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"].each do |code|
-        second_arr << code["StopCode"]
+        stopcode_arr << code["StopCode"]
       end
     end
-    #   stop_code_departuretime = []
-    #   third_arr.uniq.each do |stop_code|
-    #     stop_code_departuretime_link = "http://services.my511.org/Transit2.0/GetNextDeparturesByStopCode.aspx?token=#{ENV['TRANSIT_API_KEY']}&stopcode=#{stop_code}"
-    #     stop_code_departuretime << HTTParty.get(stop_code_departuretime_link)
-      # end
-      ap second_arr
-    #   stop_code_departuretime
+      stop_code_departuretime = []
+      stopcode_arr.uniq.each do |stop_code|
+        stop_code_departuretime_link = "http://services.my511.org/Transit2.0/GetNextDeparturesByStopCode.aspx?token=#{ENV['TRANSIT_API_KEY']}&stopcode=#{stop_code}"
+        stop_code_departuretime << HTTParty.get(stop_code_departuretime_link)
+      end
+      stop_code_departuretime
   end #method
 
   def display_departures
