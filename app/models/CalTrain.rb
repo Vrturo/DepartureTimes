@@ -72,27 +72,32 @@ class CalTrain
     # ["Route"]route["RouteDirectionList"]
     # _direction
     self.get_next_departuretime_by_code.each do |transit_hash|
-      transit_hash["RTT"]["AgencyList"]["Agency"]["RouteList"].each do |route|
-      route_hash_arr = route[1]
-            if route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].values [nil]
-               departures << "No departures within the next hour"
-            else
-              if route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].class == Array
-                   route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].each_with_index do |time, index|
-                      departures << "Stop #{index + 1}: Minutes till next Departure: " + time
-                   end
-                 next
-              elsif route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTime"].class == String
-                    departures << "Stop 1: Minutes till next Departure: " + route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"]
-                next
-              else
-                departures << "Stop #{index + 1}: No departures within the next hour"
-              end
-            end
-            route_hash_arr << { route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["Name"] => { route["RouteDirectionList"]["RouteDirection"]["Name"] => departures }}
+      transit_hash["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"].each do |route_direction_array| #5 hash objects
+        route_hash_arr = route_direction_array
+        #["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]
+      # transit_hash["RTT"]["AgencyList"]["Agency"]["RouteList"].each do |key, value| #route
+         # route_hash_arr << value['RouteDirectionList']['RouteDirection']#['StopList']['Stop']['DepartureTimeList']
+
+            # if route['RouteDirectionList']['RouteDirection']['StopList']['Stop']['DepartureTimeList'].nil?
+            #    departures << "No departures within the next hour"
+            # else
+            #   if route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].class == Array
+            #        route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].each_with_index do |time, index|
+            #           departures << "Stop #{index + 1}: Minutes till next Departure: " + time
+            #        end
+            #      next
+            #   elsif route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTime"].class == String
+            #         departures << "Stop 1: Minutes till next Departure: " + route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"]
+            #     next
+            #   else
+            #     departures << "Stop #{index + 1}: No departures within the next hour"
+            #   end
+            # end
+            # route_hash_arr << { route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["Name"] => { route["RouteDirectionList"]["RouteDirection"]["Name"] => departures }}
+        # end
       end
     end
-    ap route_hash_arr
+     ap route_hash_arr
 
   end #method
   #example output
