@@ -1,8 +1,12 @@
 class CalTrain
 
-  attr_accessor :departuretime, :stopcode, :stopname
+  attr_accessor :departuretime, :route_direction_name, :stop_name
   def initialize
     @agency_name = "Caltrain"
+    @stations = []
+    @departuretime = []
+    @route_direction_name = {}
+    @stop_name = {}
   end
 
   def get_route
@@ -63,63 +67,39 @@ class CalTrain
 
   def display_departures
     route_hash_arr = []
-    second_arr = []
+    departures = []
     third_arr = []
-    self.get_next_departuretime_by_code.each do |stop_code_hash|
-       route_hash_arr << stop_code_hash["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"]
+    # ["Route"]route["RouteDirectionList"]
+    # _direction
+    self.get_next_departuretime_by_code.each do |transit_hash|
+      transit_hash["RTT"]["AgencyList"]["Agency"]["RouteList"].each do |route|
+      route_hash_arr = route[1]
+            if route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].values [nil]
+               departures << "No departures within the next hour"
+            else
+              if route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].class == Array
+                   route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].each_with_index do |time, index|
+                      departures << "Stop #{index + 1}: Minutes till next Departure: " + time
+                   end
+                 next
+              elsif route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTime"].class == String
+                    departures << "Stop 1: Minutes till next Departure: " + route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"]
+                next
+              else
+                departures << "Stop #{index + 1}: No departures within the next hour"
+              end
+            end
+            route_hash_arr << { route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["Name"] => { route["RouteDirectionList"]["RouteDirection"]["Name"] => departures }}
+      end
     end
     ap route_hash_arr
-        # flattened_arr = arr.flatten!
-        # flattened_arr.each do |item|
 
-        #   if item.class == Hash
-        #     second_arr << item
-        #   else
-        #     next
-        #   end
-          # second_arr.find {|x| x["Route"] }
-
-            # k["Route"]["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"].each do |item|
-              # third_arr << item["StopCode"]
-            # end
-        # end
-    # end
-     # pp route_hash_arr
-    # third_arr
-    # hash_flatten second_arr
   end #method
-
-
+  #example output
+    # self.stop_name
+    # self.route_direction_name
+    # self.departuretime
+    # ["So San Francisco Caltrain Station","SOUTHBOUND TO TAMIEN, DepartureTime: 11]
 
 end #class
 
-
-
-
-
-
-
-
-      # code_departure = HTTParty.get(stop_code_departuretime_link)
-
-      # if hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].nil?
-      #   @stopcode_departuretime << "No departures within the next hour"
-      #   next
-      # else
-      #   if hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].class == Array
-      #       hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].each do |time|
-      #         @stopcode_departuretime << "Stop #{index + 1}: Minutes till next Departure: " + time
-      #       end
-      #     next
-      #   elsif hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].class == String
-      #       @stopcode_departuretime << "Stop #{index + 1}: Minutes till next Departure: " + hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"]
-      #     next
-      #   else
-      #     @stopcode_departuretime << "Stop #{index + 1}: No departures within the next hour"
-      #   end
-      # end
-
-      # return @stopcode_departuretime.join("<br>")
-      # end #each
-    # end #each
-         # hash
