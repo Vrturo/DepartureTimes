@@ -61,38 +61,40 @@ class CalTrain
   def display_departures
     route_hash_arr = []
     departures = []
-    third_arr = []
-    hash_arr = []
     route_direction_arr = []
+    display_hash_arr = []
 
     self.get_next_departuretime_by_code.each do |transit_hash|
-      transit_hash["RTT"]["AgencyList"]["Agency"]["RouteList"].each do |route| #5 hash objects
-        route.delete_if { |x| x == "Route" }
-        route.each do |array|
-          if array.class == Array
-             route_hash_arr << array
-          end
-          route_hash_arr.flatten!
-        end
-          route_hash_arr.each do |route_hash|
-            stopname = route_hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["name"]
-            if route_hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].nil?
-              departures << "No departures within the next hour"
-            else
-                if route_hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].class == Array
-                     route_hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].each_with_index do |time, index|
-                        departures << "Stop #{index + 1}: Minutes till next Departure: " + time
-                     end
-                elsif route_hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTime"].class == String
-                      departures << "Stop 1: Minutes till next Departure: " + route_hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"]
-                end
-            end
-           route_direction = route_hash["RouteDirectionList"]["RouteDirection"]["Name"]
-           route_direction_arr << { stopname => { route_direction => departures }}
-        end
-      end
+      ap transit_hash
+      # transit_hash["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"].each do |route| #5 hash objects
+        # if route.class == Hash
+        #   ap route
+          # if route["RouteDirectionList"]
+          #   ap route["RouteDirectionList"]["RouteDirection"][.count
+            # route["RouteDirectionList"]["RouteDirection"]["StopList"].each do |stoplist|
+              # ap stoplist
+            # end
+          # end
+           #  ap stopname = route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["name"]
+           #  if route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].nil?
+           #    departures << "No departures within the next hour"
+           #  elsif route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].class == Array
+           #         route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].each_with_index do |time, index|
+           #            departures << "Stop #{index + 1}: Minutes till next Departure: " + time
+           #         end
+           # elsif route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTime"].class == String
+           #    departures << "Stop 1: Minutes till next Departure: " + route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"][0]
+           #  else
+           #    departures << "No departures within the next hour"
+           #  end
+           # route_direction = route["RouteDirectionList"]["RouteDirection"]["Name"]
+           # display_hash_arr << { stopname => { route_direction => departures }}
+        # else
+        #   ap "araay"
+        # end #if
+      # end
     end
-
+    # transit_hash
   end #method
   #example output
     # self.stop_name
@@ -101,21 +103,3 @@ class CalTrain
     # ["So San Francisco Caltrain Station","SOUTHBOUND TO TAMIEN, DepartureTime: 11]
 
 end #class
-
-
-# {"RouteDirectionList"=>
-#   {"RouteDirection"=>
-#     {"StopList"=>
-#       {"Stop"=>
-#         {"DepartureTimeList"=>nil,
-#         "name"=>"College Park Caltrain Station",
-#         "StopCode"=>"70252"}
-#         }, #Stop
-
-#       "Code"=>"SB3",
-#       "Name"=>"SOUTHBOUND TO GILROY"}
-#       }, #stoplist
-
-#     "Name"=>"LOCAL", #routedirection
-#     "Code"=>"LOCAL"}
-
