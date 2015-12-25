@@ -50,7 +50,8 @@ class CalTrain
       end
     end
       stop_code_departuretime = []
-      stopcode_arr.uniq.each do |stop_code|
+      stopcode_arr.uniq!
+      stopcode_arr.each do |stop_code|
         stop_code_departuretime_link = "http://services.my511.org/Transit2.0/GetNextDeparturesByStopCode.aspx?token=#{ENV['TRANSIT_API_KEY']}&stopcode=#{stop_code}"
         stop_code_departuretime << HTTParty.get(stop_code_departuretime_link)
       end
@@ -61,43 +62,36 @@ class CalTrain
     route_hash_arr = []
     departures = []
     third_arr = []
+    hash_arr = []
+    route_direction_arr = []
 
     self.get_next_departuretime_by_code.each do |transit_hash|
-      transit_hash["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"].each do |route_direction_array| #5 hash objects
-        route_hash_arr = route_direction_array
-        # route_direction_array.each do |key, value|
-        #     if key == ["RouteDirection"]
-        #     stopname = key["RouteDirection"]["StopList"]["Stop"]["Name"]
-
-            # if key["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].nil?
-            #   departures << "No departures within the next hour"
-            # else
-            #   if key["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].class == Array
-            #        key["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].each_with_index do |time, index|
-            #           departures << "Stop #{index + 1}: Minutes till next Departure: " + time
-            #        end
-            #      next
-            #   elsif key["RouteDirection"]["StopList"]["Stop"]["DepartureTime"].class == String
-            #         departures << "Stop 1: Minutes till next Departure: " + key["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"]
-            #     next
-            #   else
-            #     departures << "Stop #{index + 1}: No departures within the next hour"
-            #   end
-            # end
-            # route_direction = key["RouteDirection"]["Name"]
-
-
-            # route_hash_arr == { stopname => { route_direction => departures }}
-            # route_hash_arr << key["RouteDirection"]["Name"]
-          # end
-        # end
-      end
-      route_hash_arr.each do |k, v|
-        third_arr << k
+      transit_hash["RTT"]["AgencyList"]["Agency"]["RouteList"].each do |route| #5 hash objects
+        route.delete_if { |x| x == "Route" }
+        route.each do |array|
+          if array.class == Array
+             route_hash_arr << array
+          end
+          route_hash_arr.flatten!
+        end
+          route_hash_arr.each do |route_hash|
+            stopname = route_hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["name"]
+            if route_hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].nil?
+              departures << "No departures within the next hour"
+            else
+                if route_hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].class == Array
+                     route_hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].each_with_index do |time, index|
+                        departures << "Stop #{index + 1}: Minutes till next Departure: " + time
+                     end
+                elsif route_hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTime"].class == String
+                      departures << "Stop 1: Minutes till next Departure: " + route_hash["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"]
+                end
+            end
+           route_direction = route_hash["RouteDirectionList"]["RouteDirection"]["Name"]
+           route_direction_arr << { stopname => { route_direction => departures }}
+        end
       end
     end
-     ap route_hash_arr
-     ap third_arr
 
   end #method
   #example output
