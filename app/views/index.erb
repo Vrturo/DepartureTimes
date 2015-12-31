@@ -5,19 +5,11 @@
   var southStops = <%= @southstop_arr %>;
 </script>
 
-<div>
-  <% neww = CalTrain.new%>
-  <%= neww.display_departures%>
-</div>
-
-<div id="coordinates">
-  <h2> Your Coordinates:</h2>
-  <div id="location"> <h3>Hello!</h3></div>
-</div>
 <br>
-
 <div id="map"></div>
 
+  <% neww = CalTrain.new%>
+  <% neww.display_departures%>
 <h1 style="text-align:center"> Caltrain Departure Times </h1>
 <div class="buttonWrap"
   <button src="" id="mapButton"> Show Caltrain Stops!</button>

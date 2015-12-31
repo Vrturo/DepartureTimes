@@ -8,8 +8,6 @@ function getLocation() {
 }
 var myMap = {};
 function showPosition(position) {
-    x.innerHTML = "Latitude: " + position.coords.latitude +
-    "<br>Longitude: " + position.coords.longitude;
     initMap(position.coords.latitude, position.coords.longitude);
 }
 var map;
