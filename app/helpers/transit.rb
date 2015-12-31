@@ -1,5 +1,13 @@
-def conditional_method
 
+
+def conditional_method(object)
+  if object.class == Array
+
+  end
+
+  if object.class == Hash
+
+  end
 end
 
 # <RTT> {}

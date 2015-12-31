@@ -63,10 +63,11 @@ class CalTrain
     departures = []
     route_direction_arr = []
     display_hash_arr = []
+    arr = []
 
     self.get_next_departuretime_by_code.each do |transit_hash|
-      ap transit_hash
-      # transit_hash["RTT"]["AgencyList"]["Agency"]["RouteList"]["Route"].each do |route| #5 hash objects
+      transit_hash["RTT"]["AgencyList"]["Agency"]["RouteList"].each do |route| #5 hash objects
+         arr = route
         # if route.class == Hash
         #   ap route
           # if route["RouteDirectionList"]
@@ -92,8 +93,9 @@ class CalTrain
         # else
         #   ap "araay"
         # end #if
-      # end
+      end
     end
+    arr
     # transit_hash
   end #method
   #example output
