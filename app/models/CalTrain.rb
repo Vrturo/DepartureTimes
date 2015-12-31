@@ -59,52 +59,14 @@ class CalTrain
   end #method
 
   def display_departures
-    route_hash_arr = []
-    departures = []
-    route_direction_arr = []
-    display_hash_arr = []
-    arr = []
-
     self.get_next_departuretime_by_code.each do |transit_hash|
       transit_hash["RTT"]["AgencyList"]["Agency"]["RouteList"].each do |route_k, route_v| #5 hash objects
 
         route_direction = route_conditional_method(route_v)
-        # ap route_direction
-
         departure_time_list = route_direction_conditional_method(route_direction)
-
         departure_time = departure_time_list_conditional_method(departure_time_list)
-         # if route_v.class == Hash
-         #  ap "hash"
-          # if route["RouteDirectionList"]
-          #   ap route["RouteDirectionList"]["RouteDirection"].count
-            # route["RouteDirectionList"]["RouteDirection"]["StopList"].each do |stoplist|
-              # ap stoplist
-            # end
-          # end
-           #  ap stopname = route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["name"]
-           #  if route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].nil?
-           #    departures << "No departures within the next hour"
-           #  elsif route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"].class == Array
-           #         route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"]["DepartureTime"].each_with_index do |time, index|
-           #            departures << "Stop #{index + 1}: Minutes till next Departure: " + time
-           #         end
-           # elsif route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTime"].class == String
-           #    departures << "Stop 1: Minutes till next Departure: " + route["RouteDirectionList"]["RouteDirection"]["StopList"]["Stop"]["DepartureTimeList"][0]
-           #  else
-           #    departures << "No departures within the next hour"
-           #  end
-           # route_direction = route["RouteDirectionList"]["RouteDirection"]["Name"]
-           # display_hash_arr << { stopname => { route_direction => departures }}
-        # else
-        #   ap "array"
-        #   route_v.each do |route_direction| |k, v|
-
-        # end #if
       end
     end
-    arr
-    # transit_hash
   end #method
   #example output
     # self.stop_name

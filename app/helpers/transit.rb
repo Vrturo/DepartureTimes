@@ -41,7 +41,7 @@ def departure_time_list_conditional_method(departure_time_list)
 end
 
 
-
+# Every condition possible
 
 # <RTT> {}
 #     <AgencyList> {}
