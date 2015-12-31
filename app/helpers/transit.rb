@@ -5,7 +5,7 @@ def route_conditional_method(route)
     route.each do |route_direction_list_k, route_direction_list_v|
      return route_direction_list_k["RouteDirectionList"]["RouteDirection"]
     end
-  else
+  else #Hash
     return route["RouteDirectionList"]["RouteDirection"]
   end
 end
@@ -18,12 +18,29 @@ def route_direction_conditional_method(stop_list)
       self.stop_name = stop_k["StopList"]["Stop"]["name"]
      return stop_k["StopList"]["Stop"]["DepartureTimeList"]
     end
-  else
-    ap self.route_direction_name = stop_list["Name"]
+  else #Hash
+    self.route_direction_name = stop_list["Name"]
     self.stop_name = stop_list["StopList"]["Stop"]["name"]
     return stop_list["StopList"]["Stop"]["DepartureTimeList"]
   end
 end
+
+def departure_time_list_conditional_method(departure_time_list)
+  if departure_time_list.nil?
+    self.departuretime << "No departures within the next 90 minutes"
+  else
+      if departure_time_list["DepartureTime"].class == Array
+        departure_time_list["DepartureTime"].each do |time|
+          self.departuretime << "Minutes till next Departure: " + time
+        end
+
+      else #String
+        self.departuretime << "Minutes till next Departure: " + departure_time_list["DepartureTime"]
+      end
+  end
+end
+
+
 
 
 # <RTT> {}

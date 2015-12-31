@@ -71,8 +71,9 @@ class CalTrain
         route_direction = route_conditional_method(route_v)
         # ap route_direction
 
-        stoplist = route_direction_conditional_method(route_direction)
+        departure_time_list = route_direction_conditional_method(route_direction)
 
+        departure_time = departure_time_list_conditional_method(departure_time_list)
          # if route_v.class == Hash
          #  ap "hash"
           # if route["RouteDirectionList"]
