@@ -26,6 +26,8 @@ The Backend was written in rails. <br />
 - hard to see if api is working when caltrain isnt running
 - loop through nested hash finding the appropriate keys for stopcode
 - loop through arrays of nested hashes and arrays
+- Can only work during certain times because departure times are limited
+- So many conditionals
 ### Resources
 
 https://developers.google.com/maps/<br>
