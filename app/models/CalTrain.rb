@@ -103,3 +103,19 @@ class CalTrain
     # ["So San Francisco Caltrain Station","SOUTHBOUND TO TAMIEN, DepartureTime: 11]
 
 end #class
+
+# <RTT> {}
+#     <AgencyList> {}
+#         <Agency> {}
+#             <RouteList> {}
+#                 <Route> {} or []
+#                     <RouteDirectionList> {}
+#                         <RouteDirection {} or [] Name="SOUTHBOUND TO TAMIEN">
+#                             <StopList> {}
+#                                 <Stop {} name="College Park Caltrain Station">
+#                                     <DepartureTimeList /> nil or {}
+#                                       <DepartureTime> [] or ""
+
+
+
+
