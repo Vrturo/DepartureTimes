@@ -1,5 +1,3 @@
-
-
 def route_conditional_method(route)
   if route.class == Array
     route.each do |route_direction_list_k, route_direction_list_v|
