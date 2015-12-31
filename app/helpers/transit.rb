@@ -3,8 +3,7 @@
 def route_conditional_method(route)
   if route.class == Array
     route.each do |route_direction_list_k, route_direction_list_v|
-     return route_direction_list_k
-     ap "array"
+     return route_direction_list_k["RouteDirectionList"]
     end
   else
     return route["RouteDirectionList"]
