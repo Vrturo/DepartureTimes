@@ -1,12 +1,12 @@
 
 
-def conditional_method(object)
-  if object.class == Array
-
-  end
-
-  if object.class == Hash
-
+def route_conditional_method(route)
+  if route.class == Array
+    route.each do |route_direction_list_k, route_direction_list_v|
+     route_direction_list_k["RouteDirection"]
+    end
+  else
+    route["RouteDirectionList"]["RouteDirection"]
   end
 end
 
