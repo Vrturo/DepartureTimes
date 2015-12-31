@@ -67,9 +67,12 @@ class CalTrain
 
     self.get_next_departuretime_by_code.each do |transit_hash|
       transit_hash["RTT"]["AgencyList"]["Agency"]["RouteList"].each do |route_k, route_v| #5 hash objects
-        ap route_conditional_method(route_v)
 
+        route_direction = route_conditional_method(route_v)
 
+        # route_direction_conditional_method(route_direction)
+
+        ap route_direction
          # if route_v.class == Hash
          #  ap "hash"
           # if route["RouteDirectionList"]
