@@ -69,9 +69,9 @@ class CalTrain
       transit_hash["RTT"]["AgencyList"]["Agency"]["RouteList"].each do |route_k, route_v| #5 hash objects
 
         route_direction = route_conditional_method(route_v)
+        # ap route_direction
 
-
-        ap stoplist = route_direction_conditional_method(route_direction)
+        stoplist = route_direction_conditional_method(route_direction)
 
          # if route_v.class == Hash
          #  ap "hash"
