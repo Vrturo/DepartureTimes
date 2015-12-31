@@ -11,11 +11,13 @@ def route_conditional_method(route)
 end
 
 
-def route_direction_conditional_method(route_direction)
-  if route_direction.class == Array
-    ap 'array'
+def route_direction_conditional_method(stop_list)
+  if stop_list.class == Array
+    stop_list.each do |stop_k, stop_v|
+     return stop_k["StopList"]["Stop"]["DepartureTimeList"]
+    end
   else
-    ap 'hash'
+    return stop_list["StopList"]["Stop"]["DepartureTimeList"]
   end
 end
 
