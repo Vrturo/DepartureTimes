@@ -8,8 +8,6 @@
 <br>
 <div id="map"></div>
 
-  <% neww = CalTrain.new%>
-  <% neww.display_departures%>
 <h1 style="text-align:center"> Caltrain Departure Times </h1>
 <div class="buttonWrap"
   <button src="" id="mapButton"> Show Caltrain Stops!</button>
@@ -17,35 +15,23 @@
 <br>
 <br>
 
-<div id="table_container">
-  <table style="width:50%">
+  <table style="width:100"%>
     <tr>
-      <th><h2>Northbound</h2></th>
+      <th><h2>Station Name</h2></th>
+      <th><h2>Route Direction</h2></th>
+      <th><h2>Departure Time</h2></th>
     </tr>
-
-    <%# @northbound_arr.each_with_index do |stopname, index| %>
+    <% neww = CalTrain.new%>
+    <% neww.display_departures%>
+    <% ap neww.stop_name%>
+    <% neww.stop_name.each do |stop_name, route_dir|%>
     <tr>
-      <td><h3> <%#= index + 1 %>. <%#= stopname%></h3></td>
-        <%#= stopcode = @northstop_arr[index] %>
-        <%# stop = CalTrain.new(stopname, @northstop_arr[index] ) %>
-        <td><%#= stop.get_stops_by_name %></td>
+      <td><h4><%= stop_name[:name]%></h4></td>
+      <td><h4><%= stop_name[:route_direction]%></h4></td>
+      <%end%>
+      <td><h4><% neww.departuretime%></h4></td>
     </tr>
-    <%# end%>
   </table>
-  <table style="width:50%">
-    <tr>
-      <th><h2>Southbound</h2></th>
-    </tr>
-    <%# @southbound_arr.each_with_index do |stopname, index| %>
-    <tr>
-      <td><h3> <%#= index + 1 %>. <%#= stopname%></h3></td>
-        <%# stopcode = @southstop_arr[index] %>
-        <%# stop = CalTrain.new(stopname, @southstop_arr[index] ) %>
-        <td><%#= stop.get_stops_by_code %></td>
-    </tr>
-    <%# end%>
-  </table>
-</div>
 
 
 

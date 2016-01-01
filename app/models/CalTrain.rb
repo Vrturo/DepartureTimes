@@ -3,10 +3,9 @@ class CalTrain
   attr_accessor :departuretime, :route_direction_name, :stop_name
   def initialize
     @agency_name = "Caltrain"
-    @stations = []
+    @stop_name = []
+    @route_direction_name
     @departuretime = []
-    @route_direction_name = {}
-    @stop_name = {}
   end
 
   def get_route

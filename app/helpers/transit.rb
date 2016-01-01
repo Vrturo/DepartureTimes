@@ -12,13 +12,17 @@ end
 def route_direction_conditional_method(stop_list)
   if stop_list.class == Array
     stop_list.each do |stop_k, stop_v|
-      self.route_direction_name = stop_k["Name"]
-      self.stop_name = stop_k["StopList"]["Stop"]["name"]
+      stop_hash = {name: stop_k["StopList"]["Stop"]["name"], route_direction: []}
+      stop_hash[:route_direction] << stop_k["Name"]
+      self.stop_name << stop_hash
+      # self.route_direction_name = stop_k["Name"]
      return stop_k["StopList"]["Stop"]["DepartureTimeList"]
     end
   else #Hash
-    self.route_direction_name = stop_list["Name"]
-    self.stop_name = stop_list["StopList"]["Stop"]["name"]
+    stop_hash = {name: stop_list["StopList"]["Stop"]["name"], route_direction: []}
+    stop_hash[:route_direction] << stop_list["Name"]
+    self.stop_name << stop_hash
+    # self.route_direction_name << stop_list["Name"]
     return stop_list["StopList"]["Stop"]["DepartureTimeList"]
   end
 end

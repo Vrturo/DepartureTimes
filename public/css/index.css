@@ -8,15 +8,11 @@ html, body {
   border-radius: 50%;
 }
 
-#table_container{
-  margin:0 auto;
 
-}
 
 table{
   border: 1px solid black;
-  float:left;
-  width:50%
+  width:100%
 }
 #coordinates{
   text-align: center;
