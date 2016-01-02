@@ -23,11 +23,14 @@
     </tr>
     <% neww = CalTrain.new%>
     <% neww.display_departures%>
-    <% ap neww.stop_name%>
-    <% neww.stop_name.each do |stop_name, route_dir|%>
+    <% neww.stop_name%>
+    <% neww.stop_name.each do |stop_name|%>
+    <% ap stop_name%>
     <tr>
       <td><h4><%= stop_name[:name]%></h4></td>
-      <td><h4><%= stop_name[:route_direction]%></h4></td>
+      <% stop_name[:route_direction].each do |direction| %>
+      <td><h4><%= direction %></h4></td>
+        <%end%>
       <%end%>
       <td><h4><% neww.departuretime%></h4></td>
     </tr>
