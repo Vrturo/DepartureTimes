@@ -20,8 +20,6 @@
       <th><h2>Route Direction</h2></th>
       <th><h2>Departure Time</h2></th>
     </tr>
-    <% transit = CalTrain.new%>
-    <% transit.display_departures%>
     <!-- sort table data by stop name -->
     <%sorted_by_name = transit.stop_name.sort_by  { |k,v| k[:name] }%>
     <% sorted_by_name.each do |stop_name|%>
