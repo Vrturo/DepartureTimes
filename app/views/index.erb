@@ -1,8 +1,5 @@
 <script type="text/javascript">
-  var northArr = <%=@northbound_arr%>;
-  var northStops = <%= @northstop_arr %>;
-  var southArr = <%=@southbound_arr%>;
-  var southStops = <%= @southstop_arr %>;
+  var stopsArr = <%=@stop_name_arr%>;
 </script>
 
 <br>
@@ -21,7 +18,7 @@
       <th><h2>Departure Time</h2></th>
     </tr>
     <!-- sort table data by stop name -->
-    <%sorted_by_name = transit.stop_name.sort_by  { |k,v| k[:name] }%>
+    <%sorted_by_name = @transit.stop_name.sort_by  { |k,v| k[:name] }%>
     <% sorted_by_name.each do |stop_name|%>
     <tr>
       <td><h4><%= stop_name[:name]%></h4></td>

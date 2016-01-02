@@ -31,17 +31,13 @@ var map;
 
     var geocoder = new google.maps.Geocoder();
     $( "#mapButton" ).click(function(){
-      geocodeAddress(geocoder, map, northArr, northStops);
-
-    });
-    $( "#south" ).click(function(){
-      geocodeAddress(geocoder, map, southArr, southStops);
+      geocodeAddress(geocoder, map, stopsArr);
     });
   }
 
-function geocodeAddress(geocoder, resultsMap, transitArr, stopsArr) {
-  for (i = 0; i < transitArr.length; i++) {
-    geocoder.geocode({'address': transitArr[i]}, function(results, status) {
+function geocodeAddress(geocoder, resultsMap, stopsArr) {
+  for (i = 0; i < stopsArr.length; i++) {
+    geocoder.geocode({'address': stopsArr[i]}, function(results, status) {
       if (status === google.maps.GeocoderStatus.OK) {
         resultsMap.setZoom(11);
         var marker = new google.maps.Marker({
