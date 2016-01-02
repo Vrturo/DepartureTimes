@@ -12,32 +12,30 @@ end
 def route_direction_conditional_method(stop_list)
   if stop_list.class == Array
     stop_list.each do |stop_k, stop_v|
-      stop_hash = {name: stop_k["StopList"]["Stop"]["name"], route_direction: []}
-      stop_hash[:route_direction] << stop_k["Name"]
+      dep_time = departure_time_list_conditional_method(stop_k["StopList"]["Stop"]["DepartureTimeList"])
+      stop_hash = {name: stop_k["StopList"]["Stop"]["name"], route_direction: stop_k["Name"], departures: dep_time}
       self.stop_name << stop_hash
-      # self.route_direction_name = stop_k["Name"]
-     return stop_k["StopList"]["Stop"]["DepartureTimeList"]
     end
   else #Hash
-    stop_hash = {name: stop_list["StopList"]["Stop"]["name"], route_direction: []}
-    stop_hash[:route_direction] << stop_list["Name"]
+    dep_time = departure_time_list_conditional_method(stop_list["StopList"]["Stop"]["DepartureTimeList"])
+    stop_hash = {name: stop_list["StopList"]["Stop"]["name"], route_direction: stop_list["Name"], departures: dep_time}
     self.stop_name << stop_hash
-    # self.route_direction_name << stop_list["Name"]
-    return stop_list["StopList"]["Stop"]["DepartureTimeList"]
   end
+
 end
 
 def departure_time_list_conditional_method(departure_time_list)
   if departure_time_list.nil?
-    self.departuretime << "No departures within the next 90 minutes"
+    return"No departures within the next 90 minutes"
+    # self.departuretime << "No departures within the next 90 minutes"
   else
       if departure_time_list["DepartureTime"].class == Array
         departure_time_list["DepartureTime"].each do |time|
-          self.departuretime << "Minutes till next Departure: " + time
+          return "Minutes till next Departure: " + time
         end
 
       else #String
-        self.departuretime << "Minutes till next Departure: " + departure_time_list["DepartureTime"]
+        return "Minutes till next Departure: " + departure_time_list["DepartureTime"]
       end
   end
 end
