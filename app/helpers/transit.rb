@@ -26,16 +26,15 @@ end
 
 def departure_time_list_conditional_method(departure_time_list)
   if departure_time_list.nil?
-    return"No departures within the next 90 minutes"
-    # self.departuretime << "No departures within the next 90 minutes"
+    "No departures within the next 90 minutes"
   else
       if departure_time_list["DepartureTime"].class == Array
         departure_time_list["DepartureTime"].each do |time|
-          return "Minutes till next Departure: " + time
+         ap "Minutes till next Departure: " + time
         end
 
       else #String
-        return "Minutes till next Departure: " + departure_time_list["DepartureTime"]
+       ap "Minutes till next Departure: " + departure_time_list["DepartureTime"]
       end
   end
 end
