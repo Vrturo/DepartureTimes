@@ -1,11 +1,9 @@
 class CalTrain
 
-  attr_accessor :departuretime, :route_direction_name, :stop_name
+  attr_accessor :stop_name
   def initialize
     @agency_name = "Caltrain"
     @stop_name = []
-    @route_direction_name
-    @departuretime = []
   end
 
   def get_route
@@ -63,14 +61,11 @@ class CalTrain
 
         route_direction = route_conditional_method(route_v)
         route_direction_conditional_method(route_direction)
-        # departure_time = departure_time_list_conditional_method(departure_time_list)
       end
     end
   end #method
   #example output
     # self.stop_name
-    # self.route_direction_name
-    # self.departuretime
     # ["So San Francisco Caltrain Station","SOUTHBOUND TO TAMIEN, DepartureTime: 11]
 
 end #class
