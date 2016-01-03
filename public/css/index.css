@@ -16,7 +16,7 @@ html, body {
 #mapContainer {
   top:5%;
   height: 80%;
-  background: url("http://hdwallpaperspretty.com/wp-content/gallery/cartoon-pictures-of-trains/jRiGpjocL.png") no-repeat center center;
+  background: url("/img/trainbackground.png") no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
