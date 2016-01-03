@@ -8,29 +8,29 @@ html, body {
   color: inherit;
   text-decoration: none
 }
+
+#caltrainTitle{
+  margin-left: 32%;
+}
+
+#mapContainer {
+  top:5%;
+  height: 80%;
+  background: url("http://hdwallpaperspretty.com/wp-content/gallery/cartoon-pictures-of-trains/jRiGpjocL.png") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+
 #map {
-  height: 60%;
+  top: 10%;
+  height: 70%;
   width: 35%;
   left: 32%;
   border-radius: 50%;
-}
-
-
-
-table{
-  border: 1px solid black;
-  width:100%
-}
-
-td{
-  text-align: center;
-}
-
-#coordinates{
-  text-align: center;
-}
-#south{
-  float: right;
 }
 
 .buttonWrap{
@@ -58,3 +58,12 @@ td{
 #mapButton:active {
    background: #1b435e;
    }
+
+table{
+  border: 1px solid black;
+  width:100%
+}
+
+td{
+  text-align: center;
+}
