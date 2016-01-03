@@ -3,7 +3,7 @@ This is an uber coding challenge that i got from Uber's repo shown on here: <br>
 https://github.com/uber/coding-challenge-tools/blob/master/coding_challenge.md
 
 I launched app live on heroku and here is the link:<br>
-
+https://sfdeparturetimes.herokuapp.com/
 
 # DepartureTimes
 I was given this specific task from the coding challenge on Uber's repo.
