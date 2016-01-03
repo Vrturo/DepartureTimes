@@ -25,6 +25,7 @@ group :test do
   gem 'rack-test'
   gem 'rspec'
   gem 'capybara'
+  gem 'nyan-cat-formatter'
 end
 
 group :test, :development do

@@ -66,3 +66,4 @@ The major resources I feel that helped me out for this specific challenge.
 https://developers.google.com/maps/<br>
 http://511.org/developer-resources_transit-api.asp\<br>
 https://www.quora.com/How-do-I-pass-a-Ruby-variable-to-JavaScript<br>
+http://www.getlaura.com/how-to-test-a-sinatra-app-with-rspec/
