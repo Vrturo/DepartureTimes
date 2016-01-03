@@ -36,6 +36,9 @@ This is definitely my favorite thing to talk about, the major challenges I faced
 - not being able to render api 511 api data server side
 - passing client side data to JS script
 - make API requests from server and client side
+- loop through nested hash finding the appropriate keys for stopcode
+- loop through arrays of nested hashes and arrays
+- So many conditionals
 
 
 2) Bad API documentation
@@ -46,14 +49,10 @@ But on page 11 in the 511 API documentation it show the "GetNextDeparturesByStop
 3) Google Maps Query limit
 I chose to display the Caltrain stops on Google Maps so users can see how far they are from an actual stop. Originally I wanted to show all the information they needed on the marker on the Google Map but Google Maps had a query limit of about 10 hits per second so it really slowed down what I wanted to do as far as user features. So instead I just let it display the closest stops nearest to the user and displayed the Stop Name on the marker but made sure all the real time data was able to display on a table below so the user wasn't limited to he data available.
 
-4)
-- display each departure time for each stop dynamically
-- hard to see if api is working when caltrain isnt running
-- show departure times if all departure times are nil
-- Can only work during certain times because departure times are limited
-- loop through nested hash finding the appropriate keys for stopcode
-- loop through arrays of nested hashes and arrays
-- So many conditionals
+4) Dealing with dynamic data that can be unavailable at certain times
+
+Dealing with the 511 API data meant dealing with live data that was only available at certain times. Since Caltrain doesn't run 24/7, working at certain hours seemed like "bad times" to work like when is working when caltrain isnt running because sometimes requests could come back nil or empty and it could seem like a bad request, but that's why writing tests help because even if data is unavailable at the moment and cant be displayed you can still see if your requests are still being made.
+
 
 ### Resources
 
