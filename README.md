@@ -30,21 +30,34 @@ For the front end I kept it really light. I used HTML/CSS, Javascript(to render 
 ## Challenges
 This is definitely my favorite thing to talk about, the major challenges I faced :D <br>
 
-1) Dealing with the 511 API
+1) <strong>Dealing with the 511 API</strong><br>
 It was my first time dealing with the 511 transit API and something that stood out to me right away was it only rendered data in XML. Meaning I couldn't just ajax some API calls and easily parse the data to display on the DOM. So instead I just did the API calls on the client side with a HTTParty gem and passed them as instance variables in a script on the view, and the data was recieved on the Javascript side.
 <br>
 Also another problem I had since the API data was only availabe in XML I had to set up a lot of conditional methods because the data I was receiving a huge nested hash of data and had many different possibilities within the hash if the next item on the hash was an Object, an array, a strign, or just nil. So I set up a wide variety of conditional helper methods that would help me loop through the hash by checking what the next object would be and according to what it is, it would use the appropriate methods to move on to the next item and return the appropriate object.
 
-2) Bad API documentation
+2) <strong>Bad API documentation</strong><br>
 In the 511 API documentation it shows the service URL you need, tells you what query parameters have to be passed, an example usage that can be used, and what it returns. <br>
 But on page 11 in the 511 API documentation it show the "GetNextDeparturesByStopName" API call they displayed the wrong API call in the example. I was following the documentation and kept getting 404 errors and nil classes. I thought I was doing something wrong so I backtracked for any errors and tried going other ways until I realized in the documentation it says "GetNextDeparturesForStopName" but it really is meant to be BYstopname, not FORstopname. I sent the developers an email hoping they'll change it so other developers don't get stuck, and second guess themselves, but now I learned even documentation can be wrong.
 
-3) Dealing with dynamic data that can be unavailable at certain times
+3) <strong>Dealing with dynamic data that can be unavailable at certain times</strong><br>
 Dealing with the 511 API data meant dealing with live data that was only available at certain times. Since Caltrain doesn't run 24/7, working at certain hours seemed like "bad times" to work like when is working when caltrain isnt running because sometimes requests could come back nil or empty and it could seem like a bad request, but that's why writing tests help because even if data is unavailable at the moment and cant be displayed you can still see if your requests are still being made.
 
-4) Google Maps Query limit
+4) <strong>Google Maps Query limit</strong><br>
 I chose to display the Caltrain stops on Google Maps so users can see how far they are from an actual stop. Originally I wanted to show all the information they needed on the marker on the Google Map but Google Maps had a query limit of about 10 hits per second so it really slowed down what I wanted to do as far as user features. So instead I just let it display the closest stops nearest to the user and displayed the Stop Name on the marker but made sure all the real time data was able to display on a table below so the user wasn't limited to he data available.
 
+
+## Future Additions
+
+Things I would've liked to add to this project if I had more free time or just time in general:
+
+1)<strong>Make all the data available through google maps.</strong><br>
+I would've liked to add more features that include the data on the Google Map. I feel like having the map alone already gives a better user experience, but also being able to let the user play with map and see the data would've been great.
+
+2)<strong>Give a user search options</strong><br>
+Something that I've always found helpful as a user of any service is having a search bar or some kind way to limit all the data and make it as specific as possible.
+
+3)<strong>Better UX/Front End design.</strong><br>
+I would of liked to add more to the front end. Give the user a better experience and more to look at.
 
 
 ### Resources
