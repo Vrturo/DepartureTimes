@@ -31,30 +31,24 @@ For the front end I kept it really light. I used HTML/CSS, Javascript(to render 
 This is definitely my favorite thing to talk about, the major challenges I faced :D <br>
 
 1) Dealing with the 511 API
-
-
-- not being able to render api 511 api data server side
-- passing client side data to JS script
-- make API requests from server and client side
-- loop through nested hash finding the appropriate keys for stopcode
-- loop through arrays of nested hashes and arrays
-- So many conditionals
-
+It was my first time dealing with the 511 transit API and something that stood out to me right away was it only rendered data in XML. Meaning I couldn't just ajax some API calls and easily parse the data to display on the DOM. So instead I just did the API calls on the client side with a HTTParty gem and passed them as instance variables in a script on the view, and the data was recieved on the Javascript side.
+<br>
+Also another problem I had since the API data was only availabe in XML I had to set up a lot of conditional methods because the data I was receiving a huge nested hash of data and had many different possibilities within the hash if the next item on the hash was an Object, an array, a strign, or just nil. So I set up a wide variety of conditional helper methods that would help me loop through the hash by checking what the next object would be and according to what it is, it would use the appropriate methods to move on to the next item and return the appropriate object.
 
 2) Bad API documentation
 In the 511 API documentation it shows the service URL you need, tells you what query parameters have to be passed, an example usage that can be used, and what it returns. <br>
 But on page 11 in the 511 API documentation it show the "GetNextDeparturesByStopName" API call they displayed the wrong API call in the example. I was following the documentation and kept getting 404 errors and nil classes. I thought I was doing something wrong so I backtracked for any errors and tried going other ways until I realized in the documentation it says "GetNextDeparturesForStopName" but it really is meant to be BYstopname, not FORstopname. I sent the developers an email hoping they'll change it so other developers don't get stuck, and second guess themselves, but now I learned even documentation can be wrong.
 
+3) Dealing with dynamic data that can be unavailable at certain times
+Dealing with the 511 API data meant dealing with live data that was only available at certain times. Since Caltrain doesn't run 24/7, working at certain hours seemed like "bad times" to work like when is working when caltrain isnt running because sometimes requests could come back nil or empty and it could seem like a bad request, but that's why writing tests help because even if data is unavailable at the moment and cant be displayed you can still see if your requests are still being made.
 
-3) Google Maps Query limit
+4) Google Maps Query limit
 I chose to display the Caltrain stops on Google Maps so users can see how far they are from an actual stop. Originally I wanted to show all the information they needed on the marker on the Google Map but Google Maps had a query limit of about 10 hits per second so it really slowed down what I wanted to do as far as user features. So instead I just let it display the closest stops nearest to the user and displayed the Stop Name on the marker but made sure all the real time data was able to display on a table below so the user wasn't limited to he data available.
 
-4) Dealing with dynamic data that can be unavailable at certain times
-
-Dealing with the 511 API data meant dealing with live data that was only available at certain times. Since Caltrain doesn't run 24/7, working at certain hours seemed like "bad times" to work like when is working when caltrain isnt running because sometimes requests could come back nil or empty and it could seem like a bad request, but that's why writing tests help because even if data is unavailable at the moment and cant be displayed you can still see if your requests are still being made.
 
 
 ### Resources
+The major resources I feel that helped me out for this specific challenge.
 
 https://developers.google.com/maps/<br>
 http://511.org/developer-resources_transit-api.asp\<br>
