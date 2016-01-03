@@ -1,18 +1,26 @@
 # Uber Project Challenge
-https://github.com/Vrturo/coding-challenge-tools/blob/master/coding_challenge.md
+This is an uber coding challenge that i got from Uber's repo shown on here: https://github.com/uber/coding-challenge-tools/blob/master/coding_challenge.md
+
 
 # DepartureTimes
-A service that gives real-time departure time for public transportation (use freely available public API). The app should geolocalize the user.
+I was given this specific task from the coding challenge on Uber's repo.
+
+> Create a service that gives real-time departure time for public transportation (use freely available public API). The app should geolocalize the user.
+
+This app display's the user location and for public transortation I chose Caltrain in San Francsico using the 511 (San Francisco) API and a bit more.
 
 # Description
+I created a WebApp that geolocalizes the user and display's his location on a map using the google maps API. Once his location is shown, the user has the option to click a button where it will display markers where all the caltrain stops in San Francisco are located. If the user scrolls down he can also see a table that displays all the San Francisco Caltrain stops, where they're headed, and see if there is a departure within the next 90 minutes in real time.
 
 ## Technical Stack
 
+
 ### Back End
 
-The Backend was written in rails. <br />
+The Backend was written in sinatra. <br />
 
 ### Frontend<br />
+For the front end I kept it really light. I used HTML/CSS, Javascript(to render the map), and I didn't use any frameworks.
 
 ## Challenges
 - hiding env keys, specifically on controller
