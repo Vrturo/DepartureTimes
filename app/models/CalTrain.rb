@@ -65,7 +65,7 @@ class CalTrain
   end #method
   #example output
     # self.stop_name
-    # ["So San Francisco Caltrain Station","SOUTHBOUND TO TAMIEN, DepartureTime: 11]
+    # [{"So San Francisco Caltrain Station" => [{"SOUTHBOUND TO TAMIEN => DepartureTime: [11,15]}}]
 
 end #class
 
