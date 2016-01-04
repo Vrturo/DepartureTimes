@@ -18,6 +18,7 @@ gem 'rake'
 
 gem 'httparty'
 gem 'shotgun'
+gem 'puma'
 
 group :test do
   gem 'database_cleaner', '~> 1.4.1'
