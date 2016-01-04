@@ -5,6 +5,24 @@ require ::File.expand_path('../config/environment', __FILE__)
 # Include all of ActiveSupport's core class extensions, e.g., String#camelize
 require 'active_support/core_ext'
 
+require 'bundler/setup'
+Bundler.require(:default)
+require './env' if File.exists?('env.rb')
+
+AssetSync.configure do |con|
+con.transit_api_key = ENV['TRANSIT_API_KEY']
+con.google_maps_api_key = ENV['GOOGLE_MAPS_API_KEY']
+con.prefix = "assets"
+con.public_path = Pathname("./public")
+end
+
+ namespace :assets do
+   desc "Precompile assets"
+   task :precompile do
+    AssetSync.sync
+   end
+end
+
 namespace :generate do
   desc "Create an empty model in app/models, e.g., rake generate:model NAME=User"
   task :model do
