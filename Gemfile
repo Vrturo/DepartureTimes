@@ -12,7 +12,7 @@ gem 'nokogiri'
 gem 'activesupport'
 gem 'activerecord'
 gem 'bcrypt-ruby'
-
+gem 'asset_sync'
 gem 'rake'
 
 gem 'httparty'

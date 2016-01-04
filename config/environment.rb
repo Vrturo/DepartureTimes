@@ -19,6 +19,7 @@ require 'nokogiri'
 require 'open-uri'
 require 'sinatra'
 require "sinatra/reloader" if development?
+require 'asset_sync'
 
 require 'erb'
 require './env' if File.exists?('env.rb')
