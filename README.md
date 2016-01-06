@@ -10,7 +10,7 @@ I was given this specific task from the coding challenge on Uber's repo.
 
 > Create a service that gives real-time departure time for public transportation (use freely available public API). The app should geolocalize the user.
 
-This app display's the user location and for public transortation I chose Caltrain in San Francsico using the 511 (San Francisco) API and a bit more.
+This app display's the user location and for public transportation I chose Caltrain in San Francisco using the 511 (San Francisco) API and a bit more.
 
 # Description
 I created a WebApp that geolocalizes the user and display's his location on a map using the google maps API. Once his location is shown via Google Maps, the user has the option to click a button where it will display markers, on the map, where all the caltrain stops in San Francisco are located. If the user scrolls down he can also see a table that displays all the San Francisco Caltrain stops, where they're headed, and see if there is a departure within the next 90 minutes in real time.
