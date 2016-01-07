@@ -59,7 +59,6 @@ Something that I've always found helpful as a user of any service is having a se
 3)<strong>Better UX/Front End design.</strong><br>
 I would of liked to add more to the front end. Give the user a better experience and more to look at.
 
-
 ### Resources
 The major resources I feel that helped me out for this specific challenge.
 
